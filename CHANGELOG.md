@@ -1,5 +1,16 @@
 # Changelog
 
+Current package: v1.1.0; supported default workhorse: GPT-6.1 Sol. Older entries below are historical.
+
+## v1.1.0 — 2026-10-04
+
+- Replaced default GPT-6 Sol routes with GPT-6.1 Sol; retained GPT-6 Luna and GPT-6 Astra.
+- Updated the US$20 Astra Low/Medium override to GPT-6.1 Sol XHigh, applied once.
+- Calibrated explicit strongly verified cross-system work toward Sol High; retained Astra for genuinely difficult coordination and hidden failures.
+- Renamed the repository to codex-model-router-gpt-6-1 and updated all installation, update and ZIP links.
+- Added existing-installation backup and upgrade instructions, dated evidence and supported effort checks.
+- Updated bilingual titles and catalog guidance; old benchmarks and screenshots remain identified as history.
+
 All notable user-facing changes are documented here.
 
 ## 2026-09-27 — GPT-6 family routing

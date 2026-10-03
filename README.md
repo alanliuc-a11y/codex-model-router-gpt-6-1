@@ -1,26 +1,30 @@
-# Save Codex tokens with better model choices
+# GPT-6.1 Sol Codex Model Router — save tokens with smarter model choices
 
 **English** | [Chinese documentation](README.zh-CN.md)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-7c3aed.svg)](LICENSE) [![Codex skill](https://img.shields.io/badge/Codex-skill-22c55e.svg)](SKILL.md) [![Latest release](https://img.shields.io/github/v/release/alanliuc-a11y/codex-model-router?display_name=tag&color=06b6d4)](https://github.com/alanliuc-a11y/codex-model-router/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-7c3aed.svg)](LICENSE) [![Codex skill](https://img.shields.io/badge/Codex-skill-22c55e.svg)](SKILL.md) [![Latest release](https://img.shields.io/github/v/release/alanliuc-a11y/codex-model-router-gpt-6-1?display_name=tag&color=06b6d4)](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/releases)
 
-**Model Router** is a small Codex skill that helps you choose a capable model and reasoning effort *before* you start a task. It routes across GPT-6 Luna, Sol, and Astra, and uses Astra when broad, integrated end-to-end work benefits from stronger coordination. Its goal is simple: avoid paying for more model capability or reasoning than the task needs, while keeping enough quality for the job.
+**Model Router** is a small Codex skill that helps you choose a capable model and reasoning effort *before* you start a task. It routes across GPT-6 Luna, GPT-6.1 Sol, and GPT-6 Astra, and uses Astra when broad, integrated end-to-end work benefits from stronger coordination. Its goal is simple: avoid paying for more model capability or reasoning than the task needs, while keeping enough quality for the job.
 
 If you want to save Codex tokens, reduce unnecessary Codex token usage, or make your Codex workflow more efficient, this skill gives you one practical decision point before work begins.
 
-## GPT-6 update — September 27, 2026
+## GPT-6.1 Sol update — October 4, 2026
 
 | Task | Default model | Starting effort |
 | --- | --- | --- |
 | One explicit, narrow, easily checked transformation | GPT-6 Luna | Low or Medium |
-| Everyday development, documents, known fixes | GPT-6 Sol | Medium |
-| Coupled features, investigation, repeated bugs | GPT-6 Sol | High |
-| Exceptional single-domain depth | GPT-6 Sol | XHigh |
+| Everyday development, documents, known fixes | GPT-6.1 Sol | Medium |
+| Coupled features, investigation, repeated bugs | GPT-6.1 Sol | High |
+| Exceptional single-domain depth | GPT-6.1 Sol | XHigh |
 | Broad cross-system work meeting the Astra criteria | GPT-6 Astra | Low or Medium; High for costly hidden failures |
 
-The US$20 profile now maps Astra Low/Medium to **GPT-6 Sol XHigh**. Its other rule remains Astra High and above to Astra Low, applied once. This is a usage preference, not a measured equivalence in quality or a subscription quota guarantee.
+The US$20 profile now maps Astra Low/Medium to **GPT-6.1 Sol XHigh**. Its other rule remains Astra High and above to Astra Low, applied once. This is a usage preference, not a measured equivalence in quality or a subscription quota guarantee.
 
-AutomationBench's official private-set v1.0.6 snapshot lists Sol XHigh at **33.2% / $0.27 per task**, Sol Max at **32.0% / $0.34**, Astra Medium at **34.09% / $1.27**, and Astra Max at **41.4% / $1.73**. These support a cost-sensitive Sol XHigh starting point for complex automation; they do not prove that maximum effort always wins. API test costs are not Codex subscription usage, and the benchmark does not establish code, image or everyday-task quality. Do not mix these results with the public dataset or AutomationBench-AA. [Official leaderboard](https://zapier.com/benchmarks) · [Methodology](https://github.com/zapier/AutomationBench)
+OpenAI positions GPT-6.1 Sol for complex coding, computer use and professional work at lower cost than Astra. We use it as the everyday default and preserve the same effort on migration before testing lower settings. [Official model page](https://developers.openai.com/api/docs/models/gpt-6.1-sol)
+
+AutomationBench supports evaluating cross-app workflows. Previous GPT-6 Sol scores do not belong to GPT-6.1 Sol; we have not verified a comparable 6.1 effort table for this update. Do not infer a score, guaranteed token saving or Codex subscription quota from older results. [Official benchmark](https://zapier.com/benchmarks)
+
+An explicit cross-system workflow with strong checks can start at GPT-6.1 Sol High. Use Astra for two or more genuine complexity signals with demanding coordination, long-context dependencies or costly hidden failures. Routine delivery and multiple files alone are insufficient.
 
 The reviewed Codex catalog exposes Low through Max on all three models and Ultra on Sol/Astra. Recommend only choices actually available in the user's picker; API support for None is insufficient.
 
@@ -42,7 +46,7 @@ Install only one profile. Both enable the same managed section in your user-leve
 In Codex, copy and send this entire message:
 
 ```text
-Use the Skill Installer to install the Codex skill from GitHub repository alanliuc-a11y/codex-model-router, using path profiles/20-usd and the skill name model-router-20. After installation, enable its global routing workflow by running the included script for my operating system. Preserve my existing AGENTS.md instructions and tell me when it is ready.
+Use the Skill Installer to install the Codex skill from GitHub repository alanliuc-a11y/codex-model-router-gpt-6-1, at ref v1.1.0, using path profiles/20-usd and the skill name model-router-20. After installation, enable its global routing workflow by running the included script for my operating system. Preserve my existing AGENTS.md instructions and tell me when it is ready.
 ```
 
 ### Higher-allowance profile
@@ -50,10 +54,24 @@ Use the Skill Installer to install the Codex skill from GitHub repository alanli
 In Codex, copy and send this entire message. Do **not** send only the bare repository URL.
 
 ```text
-Use the Skill Installer to install the Codex skill from GitHub repository alanliuc-a11y/codex-model-router, using path . and the skill name model-router. After installation, enable its global routing workflow by running the included script for my operating system. Preserve my existing AGENTS.md instructions and tell me when it is ready.
+Use the Skill Installer to install the Codex skill from GitHub repository alanliuc-a11y/codex-model-router-gpt-6-1, at ref v1.1.0, using path . and the skill name model-router. After installation, enable its global routing workflow by running the included script for my operating system. Preserve my existing AGENTS.md instructions and tell me when it is ready.
 ```
 
 The higher-allowance profile is at the repository root, so the installer needs path `.`. The US$20 profile is in `profiles/20-usd`. Once global routing is enabled, write future tasks normally without adding a skill prefix each time.
+
+## Upgrade an existing installation
+
+Send Codex this message:
+
+```text
+Update my installed Codex Model Router from alanliuc-a11y/codex-model-router-gpt-6-1 at ref v1.1.0. Detect my active profile: use profiles/20-usd for model-router-20, or . for model-router. Back up the installed folder outside the skills directory before using the Skill Installer, because it will not overwrite an existing folder. Install the same profile, run its global-routing script, preserve other AGENTS.md instructions, verify the installed files, and keep only one active router. If installation fails, restore the backup.
+```
+
+The skill names stay `model-router-20` and `model-router`; GPT-6.1 is the supported model version, while v1.1.0 is this package's release version. The earlier repository URL redirects to the new name; use the new URL in fresh installation commands.
+
+## Download without Git
+
+Download the [v1.1.0 ZIP](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.1.0.zip) and extract it. Copy the contents of `profiles/20-usd` into `<CODEX_HOME>/skills/model-router-20`, or the root skill files into `<CODEX_HOME>/skills/model-router` for the higher-allowance profile. Keep `SKILL.md`, `GLOBAL-ROUTING.md`, `agents/` and `scripts/` together. Back up an existing installation first, then run the global-routing command below. On Windows the default skills directory is `%USERPROFILE%\.codex\skills`; on macOS/Linux it is `~/.codex/skills`.
 
 ## Step 1 — Install
 
@@ -124,7 +142,7 @@ It is easy to leave a powerful model and a high reasoning setting on for every t
 Model Router recommends the lowest suitable starting point:
 
 - **GPT-6 Luna** for narrow, repeatable, and easy-to-check work.
-- **GPT-6 Sol** for ordinary production work at Medium, coupled features or ambiguity at High, and exceptional depth at XHigh. Use High when the work is ambiguous, high-risk, difficult to verify, or needs deeper judgment within one primary domain or a small number of systems.
+- **GPT-6.1 Sol** for ordinary production work at Medium, coupled features or ambiguity at High, and exceptional depth at XHigh. Use High when the work is ambiguous, high-risk, difficult to verify, or needs deeper judgment within one primary domain or a small number of systems.
 - **GPT-6 Astra** for broad, integrated end-to-end work that combines multiple demanding activities, systems, stages, or deliverables.
 
 It recommends the reasoning effort separately, so you can avoid treating every task as a highest-effort task. Astra is not the new default: the router continues to prefer Luna or Sol whenever they are likely to meet the quality bar.
@@ -145,7 +163,7 @@ The router recommends Astra when at least two of these signals are present:
 - A long dependency chain where early mistakes can silently affect later stages.
 - Weak validation, conflicting evidence, costly external effects, or hidden failure modes.
 
-The router no longer waits for proof that Sol will fail. Two Astra signals are enough to justify Astra's integration and coordination advantage. A single hard activity or deep work in one domain still routes to Sol or below.
+The router no longer waits for proof that Sol will fail. Two signals should reflect genuine integration difficulty, long-context dependencies or costly hidden failures. A well-specified workflow with strong checks can use GPT-6.1 Sol High.
 
 ## What it does not do
 
@@ -183,7 +201,7 @@ Official references: [GPT-6 Astra model page](https://developers.openai.com/api/
 
 ## Search keywords
 
-Codex token saving · save Codex tokens · reduce Codex token usage · token-efficient Codex workflow · improve Codex efficiency · Codex model selection · Codex reasoning effort · GPT-6 Luna · GPT-6 Sol · GPT-6 Astra · Astra model router
+Codex token saving · save Codex tokens · reduce Codex token usage · token-efficient Codex workflow · improve Codex efficiency · Codex model selection · Codex reasoning effort · GPT-6 Luna · GPT-6.1 Sol · GPT-6 Astra · Astra model router
 
 ## Repository contents
 
@@ -198,7 +216,7 @@ Codex token saving · save Codex tokens · reduce Codex token usage · token-eff
 
 ## Releases and contributing
 
-See [Releases](https://github.com/alanliuc-a11y/codex-model-router/releases) for stable versions and [CONTRIBUTING.md](CONTRIBUTING.md) for installation reports, routing examples, translation fixes, and focused pull requests.
+Current package release: **v1.1.0**, supporting GPT-6.1 Sol. See [Releases](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/releases) for stable versions and [CONTRIBUTING.md](CONTRIBUTING.md) for installation reports, routing examples, translation fixes, and focused pull requests.
 
 ## Validate the skill
 

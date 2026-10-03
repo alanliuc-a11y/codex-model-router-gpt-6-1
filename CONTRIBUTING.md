@@ -1,6 +1,8 @@
 # Contributing
 
-Thank you for helping improve Model Router.
+Thank you for helping improve GPT-6.1 Sol Codex Model Router (package v1.1.0).
+
+The default catalog is GPT-6 Luna, GPT-6.1 Sol and GPT-6 Astra. Recheck official documentation and the client catalog before changing it; do not relabel older benchmark scores as a newer model's results. Installation changes must update fresh-install, ZIP-download and existing-install upgrade instructions in both languages.
 
 Useful contributions include:
 

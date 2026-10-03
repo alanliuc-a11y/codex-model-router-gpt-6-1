@@ -7,6 +7,8 @@ metadata:
 
 # Model Router — Higher-Allowance Profile / 模型路由器（高额度档）
 
+Catalog revision: 2026-10-04; package release v1.1.0.
+
 Recommend the lowest-cost setup that is likely to complete the task correctly. Treat model choice and reasoning effort as separate decisions. This skill does not change speed settings.
 
 ## Plan profile
@@ -22,7 +24,7 @@ This root package is the higher-allowance profile, intended for plans above the 
 
 ## Managed catalog and router collisions
 
-In Codex, this is the authoritative router. Its managed catalog is `GPT-6 Luna`, `GPT-6 Sol`, and `GPT-6 Astra`. Do not implicitly defer to a generic or cross-platform routing skill, including `agent-model-router`; that skill is an explicit-only fallback when the user names it.
+In Codex, this is the authoritative router. Its managed catalog is `GPT-6 Luna`, `GPT-6.1 Sol`, and `GPT-6 Astra`. Do not implicitly defer to a generic or cross-platform routing skill, including `agent-model-router`; that skill is an explicit-only fallback when the user names it.
 
 Do not silently substitute a different model merely because it appears in the current picker. If the picker does not expose any model in the managed catalog, say that the catalog is unavailable and ask the user to resolve it; do not recommend a substitute model or provide an execution confirmation.
 
@@ -45,9 +47,9 @@ Before responding, check the current task against these conditions and return th
 ## Routing rubric
 
 - **GPT-6 Luna + Low/Medium:** narrow, explicit, repeatable work meeting ALL Luna conditions above. Start at Low for mechanical transformations, Medium for bounded coding.
-- **GPT-6 Sol + Medium:** normal default for production work, scoped coding, document analysis and known bug fixes.
-- **GPT-6 Sol + High:** interacting features, multi-file implementation, ambiguous requirements, unknown/repeated bugs or difficult single-domain decisions.
-- **GPT-6 Sol + XHigh:** exceptionally difficult single-domain work, a demonstrated shortfall at High, or the US$20 allowance override. Do not default to Max.
+- **GPT-6.1 Sol + Medium:** normal default for production work, scoped coding, document analysis and known bug fixes.
+- **GPT-6.1 Sol + High:** interacting features, multi-file implementation, ambiguous requirements, unknown/repeated bugs or difficult single-domain decisions.
+- **GPT-6.1 Sol + XHigh:** exceptionally difficult single-domain work, a demonstrated shortfall at High, or the US$20 allowance override. Do not default to Max.
 - **GPT-6 Astra + Low/Medium:** at least two Astra signals: three demanding work modes; end-to-end discovery through delivery; several interacting systems/artifact types; a long dependency chain; weak validation/conflicting evidence/costly hidden failures. Low for explicit strongly verifiable work, otherwise Medium.
 - **GPT-6 Astra + High:** Astra-eligible work with high stakes or weak validation.
 - **GPT-6 Astra + XHigh/Max:** exceptional depth or a demonstrated shortfall at High.
@@ -55,15 +57,19 @@ Before responding, check the current task against these conditions and return th
 
 Astra does not require a failed Sol attempt. Ordinary multi-file work alone does not establish two Astra signals. Assess actual ambiguity, dependencies and failure consequences, not just count tools.
 
-### Evidence and availability (reviewed 2026-09-27)
+### Evidence and availability (reviewed 2026-10-04)
 
-The current default catalog is GPT-6 Luna, Sol and Astra. GPT-5.6 Terra, Sol and Luna are legacy options only when explicitly requested or when the user confirms a legacy-only picker; there is no verified GPT-6 Terra. Do not silently select an old generation. If the recommended model is known to be unavailable, report the mismatch and ask for the available choices. Do not assume access from a public API page or infer the active selection from a local model cache.
+Default catalog: GPT-6 Luna, GPT-6.1 Sol and GPT-6 Astra. GPT-6 Sol and GPT-5.6 models are legacy-only when explicitly requested or the user confirms a legacy-only picker. Do not invent GPT-6.1 Luna, Terra or Astra. Do not silently fall back to the older Sol.
 
-Use the exact efforts exposed by the selected Codex model. The local reviewed catalog exposes Low/Medium/High/XHigh/Max on all three; Ultra on Sol/Astra only. API support for None does not mean Codex exposes it. Never recommend Standard as reasoning or alter speed.
+Official guidance positions GPT-6.1 Sol for complex coding, computer use and professional work at lower cost than Astra. This supports making it the normal workhorse; it does not establish equal capability or subscription savings. Preserve effective reasoning effort on upgrade before evaluating a lower effort on representative tasks. Start ordinary production tasks at Medium; use High for coupled logic, edge cases, uncertainty or diagnosis. Low can fit a modest, specified fix with direct checks when Luna is excluded because limited judgment is required. XHigh/Max need exceptional depth or a demonstrated shortfall; the US$20 override uses XHigh by policy.
 
-AutomationBench is evidence for cross-app workflow completion, not a universal ranking or a Codex quota meter. The official Zapier private-set v1.0.6 snapshot lists Sol XHigh at 33.2% ($0.27/task), Sol Max at 32.0% ($0.34/task), Astra Medium at 34.09% ($1.27/task), and Astra Max at 41.4% ($1.73/task). These results support trying Sol XHigh for cost-sensitive complex workflows and show that maximum effort is not automatically better. They do not prove Sol XHigh equals Astra Medium, predict an individual task, or justify relaxing Luna's eligibility. Do not combine public-set or AutomationBench-AA scores with this table. No verified Luna effort comparison is recorded here.
+A routine multi-file or two-tool task stays on Sol. An explicit cross-system workflow with strong validation can start at Sol High. Evaluate Astra for genuinely demanding integration with at least two signals and substantial coordination/long-context difficulty or costly hidden failures. Do not demand a failed Sol run for these tasks. Do not promote every end-to-end edit solely because it includes delivery.
 
-Sources: [OpenAI model guidance](https://developers.openai.com/api/docs/guides/latest-model), [Zapier leaderboard](https://zapier.com/benchmarks), [benchmark methodology](https://github.com/zapier/AutomationBench). Refresh evidence before claiming these figures remain current.
+The reviewed local Codex catalog exposes Low/Medium/High/XHigh/Max on all three and Ultra on GPT-6.1 Sol/Astra. Recommend only the actual model-picker options. GPT-6.1 Sol's API does not support None or Minimal. Codex Ultra is client-specific; its availability does not authorize delegation.
+
+AutomationBench is one source for cross-app automation, not a universal quality ranking or a Codex quota meter. Previous 2026-09-27 GPT-6 Sol scores must not be relabeled as GPT-6.1 Sol. No comparable GPT-6.1 Sol effort table was verified for this update; do not infer its scores or guarantee savings. Do not merge private-set, public-set and AutomationBench-AA scores. Benchmark evidence cannot relax Luna's eligibility or prove that maximum effort always wins.
+
+Sources: [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [Codex model guidance](https://learn.chatgpt.com/docs/agent-configuration/subagents), [AutomationBench](https://zapier.com/benchmarks). Refresh these sources before claiming the catalog or ranking remains current.
 
 ## Output language and response contract
 
@@ -71,11 +77,11 @@ Choose one output language before answering:
 
 - Use Chinese when the request is predominantly Chinese and any English is limited to model names, product names, code, or identifiers.
 - Use English for an English request and for a genuinely mixed request that is not predominantly Chinese.
-- Never mix Chinese and English in a routing response, except that the model name itself stays in its official English form, such as `GPT-6 Sol` or `GPT-6 Astra`.
+- Never mix Chinese and English in a routing response, except that the model name itself stays in its official English form, such as `GPT-6.1 Sol` or `GPT-6 Astra`.
 
 For a Chinese routing-only request, return exactly these three short lines and use only Chinese labels:
 
-`模型：<GPT-6 Luna|GPT-6 Sol|GPT-6 Astra>；推理强度：<轻|中|高|极高|最大|超强>`
+`模型：<GPT-6 Luna|GPT-6.1 Sol|GPT-6 Astra>；推理强度：<轻|中|高|极高|最大|超强>`
 
 `原因：<一条简短、针对任务的原因>`
 
@@ -85,7 +91,7 @@ Map reasoning labels in Chinese as follows: `Low` → `轻`, `Medium` → `中`,
 
 For an English routing-only request, return exactly these three short lines and use only English labels:
 
-`Model: <GPT-6 Luna|GPT-6 Sol|GPT-6 Astra>; reasoning effort: <Low|Medium|High|XHigh|Max|Ultra>`
+`Model: <GPT-6 Luna|GPT-6.1 Sol|GPT-6 Astra>; reasoning effort: <Low|Medium|High|XHigh|Max|Ultra>`
 
 `Reason: <one concise, task-specific reason>`
 
