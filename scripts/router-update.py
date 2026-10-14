@@ -16,6 +16,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import urllib.error
 import urllib.request
 import uuid
 import zipfile
@@ -179,7 +180,24 @@ def fetch(url, limit=MAX_DOWNLOAD, timeout=4):
 
 
 def latest_release():
-    data = json.loads(fetch(API, limit=512 * 1024))
+    try:
+        data = json.loads(fetch(API, limit=512 * 1024))
+    except urllib.error.HTTPError as error:
+        if error.code not in (403, 429):
+            raise
+        # Shared networks frequently exhaust anonymous API quotas. GitHub's
+        # canonical latest-release redirect needs no API token or JSON scraping.
+        request = urllib.request.Request(RELEASES + "/latest", headers={"User-Agent": "codex-model-router-updater"})
+        with urllib.request.urlopen(request, timeout=4) as response:
+            url = response.geturl()
+        prefix = RELEASES + "/tag/"
+        if not url.startswith(prefix):
+            raise UpdateError("Latest-release redirect left the managed repository.")
+        tag = url[len(prefix):]
+        version(tag)
+        if not tag.startswith("v"):
+            raise UpdateError("Unexpected latest-release tag.")
+        return {"version": tag[1:], "url": url, "tag": tag}
     tag = data.get("tag_name")
     version(tag)
     if tag != "v" + tag.removeprefix("v") or data.get("draft") is not False or data.get("prerelease") is not False or data.get("html_url") != RELEASES + "/tag/" + tag:
@@ -295,7 +313,7 @@ def hook_config(existing, root, home, enable=True):
             args = [sys.executable, str(root / "scripts/router-update.py"), mode,
                     "--codex-home", str(home), "--owner", OWNER]
             command = subprocess.list2cmdline(args) if os.name == "nt" else shlex.join(args)
-            handlers.append({"type": "command", "command": command, "timeout": 8,
+            handlers.append({"type": "command", "command": command, "timeout": 12,
                              "async": mode == "refresh-hook", "additionalContextLimit": 256})
         kept.append({"hooks": handlers})
     if kept:
@@ -393,9 +411,11 @@ def update(root, home, confirm=False):
         agents = home / "AGENTS.md"
         hooks = home / "hooks.json"
         originals = {agents: snapshot(agents), hooks: snapshot(hooks)}
+        previous_hooks = json.loads(originals[hooks].decode("utf-8-sig")) if originals[hooks] is not None else {}
+        reminders_enabled = any(owned(h) for group in previous_hooks.get("hooks", {}).get("UserPromptSubmit", []) for h in group.get("hooks", []))
         replacements = {
             agents: global_config(originals[agents], (staged / "GLOBAL-ROUTING.md").read_text(encoding="utf-8")),
-            hooks: hook_config(originals[hooks], root, home),
+            hooks: hook_config(originals[hooks], root, home, enable=reminders_enabled),
         }
         for path, data in originals.items():
             if data is not None:
@@ -419,7 +439,7 @@ def update(root, home, confirm=False):
                     atomic_write(path, data)
             raise UpdateError("Upgrade failed; the original installation and configuration were restored.") from error
         return {"updated": True, "version": new_manifest["version"], "profile": manifest["profile"],
-                "backup": str(transaction), "review_required": True}
+                "backup": str(transaction), "review_required": reminders_enabled}
 
 
 def main():

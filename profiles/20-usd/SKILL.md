@@ -7,7 +7,7 @@ metadata:
 
 # Model Router — US$20 Profile / 模型路由器（20 美金档）
 
-Catalog revision: 2026-10-04; package release v1.2.0 (2026-10-14).
+Catalog revision: 2026-10-04; package release v1.2.1 (2026-10-14).
 
 Recommend the lowest-cost setup that is likely to complete the task correctly. Treat model choice and reasoning effort as separate decisions. This skill does not change speed settings.
 

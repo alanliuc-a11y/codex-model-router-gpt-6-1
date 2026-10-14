@@ -6,7 +6,7 @@ The repository includes automated offline integration tests for both package pro
 
 ## Setup
 
-1. Follow the [README](../README.md) to install one v1.2.0 profile. Earlier versions cannot detect this feature before upgrading once.
+1. Follow the [README](../README.md) to install one v1.2.1 profile. Earlier versions cannot detect this feature before upgrading once.
 2. Use an available Python 3.10+ executable. From the installed skill folder, run the global-routing script, then `python scripts/router-update.py enable-hooks` (use `python3` on macOS/Linux).
 3. Review and trust both new hook handlers in your client's supported hook controls. In Codex CLI, use `/hooks`. Restart or open a new session if configuration is not reloaded. If your desktop client lacks that interface/support, keep ordinary routing and use manual checks; do not assume configuration means execution.
 4. Automatic checks run on user prompts, not while Codex is closed. The foreground handler only reads cache; the async handler refreshes it at most once per 24 hours, including failed attempts. Explicit checks bypass the cache. The first check may not affect the current response. [Official hook lifecycle](https://learn.chatgpt.com/docs/hooks)

@@ -8,6 +8,7 @@ from pathlib import Path
 import tempfile
 import time
 import unittest
+import urllib.error
 from unittest.mock import patch
 import zipfile
 
@@ -104,6 +105,21 @@ class Updates(unittest.TestCase):
                 with self.assertRaises(router.UpdateError):
                     router.latest_release()
 
+    def test_api_rate_limit_uses_canonical_release_redirect(self):
+        from unittest.mock import MagicMock
+        response = MagicMock()
+        response.__enter__.return_value = response
+        response.geturl.return_value = router.RELEASES + "/tag/v1.3.0"
+        for code in (403, 429):
+            error = urllib.error.HTTPError(router.API, code, "rate limit", {}, None)
+            with patch.object(router, "fetch", side_effect=error), patch.object(router.urllib.request, "urlopen", return_value=response):
+                self.assertEqual(router.latest_release(), self.release())
+        response.geturl.return_value = "https://example.com/tag/v1.3.0"
+        error = urllib.error.HTTPError(router.API, 403, "rate limit", {}, None)
+        with patch.object(router, "fetch", side_effect=error), patch.object(router.urllib.request, "urlopen", return_value=response):
+            with self.assertRaises(router.UpdateError):
+                router.latest_release()
+
     def test_daily_cache_and_failure_throttle(self):
         with patch.object(router, "latest_release", return_value=self.release()) as fetch:
             router.refresh(self.home)
@@ -193,6 +209,22 @@ class Updates(unittest.TestCase):
         manifest = router.stage_archive(self.archive(profile="model-router"), target, "model-router", "1.3.0")
         self.assertEqual(manifest["profile"], "model-router")
         router.verify_package(target, manifest)
+
+    def test_upgrade_preserves_disabled_reminders(self):
+        payload = self.archive()
+        with patch.object(router, "latest_release", return_value=self.release()), patch.object(router, "fetch", return_value=payload):
+            result = router.update(self.install, self.home, confirm=True)
+        self.assertFalse(result["review_required"])
+        self.assertEqual(router.read_json(self.home / "hooks.json"), self.original_hook)
+
+    def test_upgrade_preserves_enabled_reminders(self):
+        router.enable_hooks(self.install, self.home)
+        payload = self.archive()
+        with patch.object(router, "latest_release", return_value=self.release()), patch.object(router, "fetch", return_value=payload):
+            result = router.update(self.install, self.home, confirm=True)
+        self.assertTrue(result["review_required"])
+        groups = router.read_json(self.home / "hooks.json")["hooks"]["UserPromptSubmit"]
+        self.assertEqual(sum(router.owned(h) for group in groups for h in group["hooks"]), 2)
 
     def test_failure_rolls_back_folder_and_config(self):
         originals = {path: path.read_bytes() for path in (self.home / "AGENTS.md", self.home / "hooks.json", self.install / "version.json")}

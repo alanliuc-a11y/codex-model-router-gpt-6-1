@@ -34,3 +34,7 @@ The updater refuses modified tracked package files, linked managed directories a
 Existing v1.1.0 users must upgrade once through the Skill Installer or manual copy before reminders and this updater exist. Preserve the active profile; do not install both. After an upgrade, the updated skill is available on the next turn; hook discovery may require a new session/restart and trust review. Do not promise an OS push notification or a one-click installation link.
 
 Official hook contract, checked 2026-10-14: https://learn.chatgpt.com/docs/hooks
+
+The release checker uses the public GitHub API first. On HTTP 403/429, it resolves the managed repository's canonical `releases/latest` link and accepts only its numeric stable release tag. It does not scrape release text or access credentials. The background handler has a 12-second ceiling for this bounded fallback. If an old v1.2.0 install cannot discover an upgrade because of rate limiting, bootstrap v1.2.1 via the documented Skill Installer upgrade.
+
+Upgrades preserve whether reminder hooks are configured: a user who disabled reminders does not have them silently re-enabled. Configured hooks still need trust; configuration presence does not prove trust or execution.

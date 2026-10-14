@@ -10,9 +10,11 @@
 
 ## 新增功能：发现新版时提醒更新
 
-1.2.0 版可以在模型推荐下方增加一句更新提醒。你输入「更新路由器」，它才会备份旧版并安装同一档位的新版，不会偷偷更新，也不会自动切换模型。
+1.2.1 版可以在模型推荐下方增加一句更新提醒。你输入「更新路由器」，它才会备份旧版并安装同一档位的新版，不会偷偷更新，也不会自动切换模型。
 
 提醒功能需要可用的运行环境、支持运行检查脚本的 Codex 客户端，以及你首次审核并信任这些脚本。老用户需要先升级一次，才能获得此功能。[测试与限制说明](docs/update-testing.zh-CN.md)
+
+1.2.1 补丁还修复了匿名接口限流的问题：遇到限流时使用 GitHub 官方最新发布链接继续检查，不读取用户凭据。
 
 ## 2026 年 10 月 4 日更新：支持 GPT-6.1 Sol
 
@@ -41,10 +43,10 @@ AutomationBench 可辅助比较跨应用任务，但旧版 GPT-6 Sol 的成绩�
 在 Codex 中复制发送：
 
 ```text
-请把我已安装的 Codex 模型路由器更新到 alanliuc-a11y/codex-model-router-gpt-6-1 仓库的 v1.2.0 版本。先检测档位：model-router-20 使用 profiles/20-usd，model-router 使用仓库根目录。先把旧技能及 AGENTS.md、hooks.json 备份到技能目录外，再使用技能安装器安装同一档位。运行全局启用脚本，核对版本清单和文件校验值，并用本机已有的运行环境运行 scripts/router-update.py enable-hooks。保留其他规则和检查脚本，只保留一个生效路由器。告诉我如何审核并信任新配置，不要绕过审核。如果安装或配置失败，请恢复原目录及配置。
+请把我已安装的 Codex 模型路由器更新到 alanliuc-a11y/codex-model-router-gpt-6-1 仓库的 v1.2.1 版本。先检测档位：model-router-20 使用 profiles/20-usd，model-router 使用仓库根目录。先把旧技能及 AGENTS.md、hooks.json 备份到技能目录外，再使用技能安装器安装同一档位。运行全局启用脚本，核对版本清单和文件校验值，并用本机已有的运行环境运行 scripts/router-update.py enable-hooks。保留其他规则和检查脚本，只保留一个生效路由器。告诉我如何审核并信任新配置，不要绕过审核。如果安装或配置失败，请恢复原目录及配置。
 ```
 
-技能名称保持不变。GPT-6.1 是支持的模型版本，v1.2.0 是本工具的发布版本。旧仓库地址会重定向，今后的安装请使用新地址。
+技能名称保持不变。GPT-6.1 是支持的模型版本，v1.2.1 是本工具的发布版本。旧仓库地址会重定向，今后的安装请使用新地址。
 
 ## 先选择安装档位
 
@@ -64,7 +66,7 @@ AutomationBench 可辅助比较跨应用任务，但旧版 GPT-6 Sol 的成绩�
 在 Codex 中复制并发送下面整段话：
 
 ```text
-请使用技能安装器从 GitHub 仓库 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.2.0 版本；路径使用 profiles/20-usd，名称使用 model-router-20。安装后运行全局启用脚本，再用本机已有的运行环境运行 scripts/router-update.py enable-hooks，配置更新提醒。保留我的 AGENTS.md 规则及其他检查脚本。告诉我如何审核并信任新配置，不要绕过审核；缺少运行环境时先问我，不要擅自安装。分别说明哪些步骤已完成。
+请使用技能安装器从 GitHub 仓库 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.2.1 版本；路径使用 profiles/20-usd，名称使用 model-router-20。安装后运行全局启用脚本，再用本机已有的运行环境运行 scripts/router-update.py enable-hooks，配置更新提醒。保留我的 AGENTS.md 规则及其他检查脚本。告诉我如何审核并信任新配置，不要绕过审核；缺少运行环境时先问我，不要擅自安装。分别说明哪些步骤已完成。
 ```
 
 ### 高额度档
@@ -72,14 +74,14 @@ AutomationBench 可辅助比较跨应用任务，但旧版 GPT-6 Sol 的成绩�
 在 Codex 中复制并发送下面**整段话**。不要只发送一个裸 GitHub 链接。
 
 ```text
-请使用技能安装器从 GitHub 仓库 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.2.0 版本；路径使用 .，名称使用 model-router。安装后运行全局启用脚本，再用本机已有的运行环境运行 scripts/router-update.py enable-hooks，配置更新提醒。保留我的 AGENTS.md 规则及其他检查脚本。告诉我如何审核并信任新配置，不要绕过审核；缺少运行环境时先问我，不要擅自安装。分别说明哪些步骤已完成。
+请使用技能安装器从 GitHub 仓库 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.2.1 版本；路径使用 .，名称使用 model-router。安装后运行全局启用脚本，再用本机已有的运行环境运行 scripts/router-update.py enable-hooks，配置更新提醒。保留我的 AGENTS.md 规则及其他检查脚本。告诉我如何审核并信任新配置，不要绕过审核；缺少运行环境时先问我，不要擅自安装。分别说明哪些步骤已完成。
 ```
 
 高额度档位于仓库根目录，因此路径是 `.`；20 美金档位于 `profiles/20-usd`。全局路由启用完成后，以后的任务都可以像平时一样直接输入，不需要每次添加 skill 前缀。
 
 ## 手动下载安装
 
-下载 [v1.2.0 压缩包](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.2.0.zip) 并解压。20 美金档复制 `profiles/20-usd` 到用户技能目录中的 `model-router-20` 文件夹；高额度档把根目录技能文件复制到 `model-router`。`SKILL.md`、`GLOBAL-ROUTING.md`、`version.json`、`agents`、`references` 和 `scripts` 必须放在一起。已有安装先备份，再运行下方两条配置命令。
+下载 [v1.2.1 压缩包](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.2.1.zip) 并解压。20 美金档复制 `profiles/20-usd` 到用户技能目录中的 `model-router-20` 文件夹；高额度档把根目录技能文件复制到 `model-router`。`SKILL.md`、`GLOBAL-ROUTING.md`、`version.json`、`agents`、`references` 和 `scripts` 必须放在一起。已有安装先备份，再运行下方两条配置命令。
 
 默认用户技能目录：Windows 为 `%USERPROFILE%\.codex\skills`，其他系统为 `~/.codex/skills`。
 

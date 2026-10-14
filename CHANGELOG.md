@@ -1,6 +1,13 @@
 # Changelog
 
-Current package: v1.2.0; supported default workhorse: GPT-6.1 Sol. Older entries below are historical.
+Current package: v1.2.1; supported default workhorse: GPT-6.1 Sol. Older entries below are historical.
+
+## v1.2.1 — 2026-10-14
+
+- Fixed real-world anonymous GitHub API rate limits: 403/429 now fall back to the canonical latest-release redirect without user credentials.
+- Added a rate-limit and fixed-origin regression test; allowed enough background hook time for the bounded fallback.
+- Preserved enabled/disabled reminder configuration during upgrades, with regression tests for both states.
+- Updated both installable packages and bilingual fresh-install/upgrade/ZIP instructions.
 
 ## v1.2.0 — 2026-10-14
 
