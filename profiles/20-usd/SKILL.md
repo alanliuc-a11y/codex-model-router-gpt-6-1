@@ -7,7 +7,7 @@ metadata:
 
 # Model Router — US$20 Profile / 模型路由器（20 美金档）
 
-Catalog revision: 2026-10-04; package release v1.1.0.
+Catalog revision: 2026-10-04; package release v1.2.0 (2026-10-14).
 
 Recommend the lowest-cost setup that is likely to complete the task correctly. Treat model choice and reasoning effort as separate decisions. This skill does not change speed settings.
 
@@ -40,7 +40,7 @@ Exclude Luna for unknown-cause or repeatedly failing bugs; new features with lif
 
 Route the whole requested outcome, not just the easiest first step. Splitting implementation into small steps does not justify assigning the entire task to Luna. Apply any allowance-profile override only AFTER this base assessment, exactly once; never remap the resulting Astra Low a second time.
 
-Before responding, check the current task against these conditions and return the prescribed three-line format once, with a task-specific reason. Do not replace the reason with an execution plan.
+Before responding, check the current task against these conditions and return the prescribed three-line format once, with a task-specific reason. The verified update notice below is the only permitted fourth-line exception. Do not replace the reason with an execution plan.
 
 ## Routing rubric
 
@@ -90,7 +90,7 @@ State that the final choice follows the US$20 allowance policy when the override
 
 Choose one output language before answering. Use Chinese when the request is predominantly Chinese; use English for English or genuinely mixed requests. Never mix Chinese and English in a routing response, except for official model names.
 
-For a Chinese routing-only request, return exactly these three short lines:
+For a Chinese routing-only request, return these three short lines (plus the optional verified update line below):
 
 `模型：<GPT-6 Luna|GPT-6.1 Sol|GPT-6 Astra>；推理强度：<轻|中|高|极高|最大|超强>`
 
@@ -100,7 +100,7 @@ For a Chinese routing-only request, return exactly these three short lines:
 
 Map reasoning labels as follows: `Low` → `轻`, `Medium` → `中`, `High` → `高`, `XHigh` → `极高`, `Max` → `最大`, and `Ultra` → `超强`.
 
-For an English routing-only request, return exactly these three short lines:
+For an English routing-only request, return these three short lines (plus the optional verified update line below):
 
 `Model: <GPT-6 Luna|GPT-6.1 Sol|GPT-6 Astra>; reasoning effort: <Low|Medium|High|XHigh|Max|Ultra>`
 
@@ -111,3 +111,9 @@ For an English routing-only request, return exactly these three short lines:
 Treat `go` as a confirmation only when the entire user message is exactly `go`, ignoring case and surrounding whitespace. Do not mention speed or label `Standard` as a reasoning effort. For a normal substantive task, route first and do not execute it until the user confirms with the language-appropriate confirmation word.
 
 On confirmation, execute the accepted task without another routing gate. If this profile is the active global profile, do not implicitly use the higher-allowance or cross-platform router.
+
+## Update reminders and maintenance
+
+When trusted local hook context verifies a newer release, append only one optional fourth line below the recommendation, in its output language: Chinese `更新：模型路由器已有新版（<版本>），输入“更新路由器”即可更新。`; English `Update: Model Router <version> is available. Send "update router" to update.` Without verified hook context, return exactly three lines; never browse/check with model tools before routing. Do not display the notice on task execution or confirmation turns.
+
+Standalone `更新路由器` / `update router` and `检查路由器更新` / `check router update` are explicit router-maintenance requests exempt from the routing gate. They do not confirm a pending task. For these commands or reminder setup/disable, read [updating.md](references/updating.md) and use the installed maintenance script. An update notice alone never authorizes installation. Preserve the user's active allowance profile and other global rules. Never bypass hook trust or claim configuration proves client execution.

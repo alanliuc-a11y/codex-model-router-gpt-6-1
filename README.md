@@ -8,6 +8,12 @@
 
 If you want to save Codex tokens, reduce unnecessary Codex token usage, or make your Codex workflow more efficient, this skill gives you one practical decision point before work begins.
 
+## New in v1.2.0 — update reminders
+
+When a newer stable release is verified, the router can add one update reminder below its model recommendation. Send `update router` to authorize a backup-first upgrade of your existing profile. No silent installs, no automatic model switching.
+
+Reminders require Python 3.10+, a Codex client with lifecycle-hook support, and a one-time hook review. Existing users must upgrade once to v1.2.0 to get this feature. [Setup, limitations and testing](docs/update-testing.md)
+
 ## GPT-6.1 Sol update — October 4, 2026
 
 | Task | Default model | Starting effort |
@@ -46,7 +52,7 @@ Install only one profile. Both enable the same managed section in your user-leve
 In Codex, copy and send this entire message:
 
 ```text
-Use the Skill Installer to install the Codex skill from GitHub repository alanliuc-a11y/codex-model-router-gpt-6-1, at ref v1.1.0, using path profiles/20-usd and the skill name model-router-20. After installation, enable its global routing workflow by running the included script for my operating system. Preserve my existing AGENTS.md instructions and tell me when it is ready.
+Use the Skill Installer to install the Codex skill from GitHub repository alanliuc-a11y/codex-model-router-gpt-6-1, at ref v1.2.0, using path profiles/20-usd and the skill name model-router-20. After installation, run its global-routing script, then use an available Python 3.10+ runtime to run scripts/router-update.py enable-hooks from the installed folder. Preserve my existing AGENTS.md rules and other hooks. Explain how to review and trust the new hooks; do not bypass trust or install a runtime without asking. Tell me which parts are ready.
 ```
 
 ### Higher-allowance profile
@@ -54,7 +60,7 @@ Use the Skill Installer to install the Codex skill from GitHub repository alanli
 In Codex, copy and send this entire message. Do **not** send only the bare repository URL.
 
 ```text
-Use the Skill Installer to install the Codex skill from GitHub repository alanliuc-a11y/codex-model-router-gpt-6-1, at ref v1.1.0, using path . and the skill name model-router. After installation, enable its global routing workflow by running the included script for my operating system. Preserve my existing AGENTS.md instructions and tell me when it is ready.
+Use the Skill Installer to install the Codex skill from GitHub repository alanliuc-a11y/codex-model-router-gpt-6-1, at ref v1.2.0, using path . and the skill name model-router. After installation, run its global-routing script, then use an available Python 3.10+ runtime to run scripts/router-update.py enable-hooks from the installed folder. Preserve my existing AGENTS.md rules and other hooks. Explain how to review and trust the new hooks; do not bypass trust or install a runtime without asking. Tell me which parts are ready.
 ```
 
 The higher-allowance profile is at the repository root, so the installer needs path `.`. The US$20 profile is in `profiles/20-usd`. Once global routing is enabled, write future tasks normally without adding a skill prefix each time.
@@ -64,22 +70,26 @@ The higher-allowance profile is at the repository root, so the installer needs p
 Send Codex this message:
 
 ```text
-Update my installed Codex Model Router from alanliuc-a11y/codex-model-router-gpt-6-1 at ref v1.1.0. Detect my active profile: use profiles/20-usd for model-router-20, or . for model-router. Back up the installed folder outside the skills directory before using the Skill Installer, because it will not overwrite an existing folder. Install the same profile, run its global-routing script, preserve other AGENTS.md instructions, verify the installed files, and keep only one active router. If installation fails, restore the backup.
+Update my installed Codex Model Router from alanliuc-a11y/codex-model-router-gpt-6-1 at ref v1.2.0. Detect my active profile: use profiles/20-usd for model-router-20, or . for model-router. Back up the installed folder and AGENTS.md/hooks.json outside the skills directory before using the Skill Installer, because it will not overwrite an existing folder. Install the same profile, run its global-routing script, verify version.json and the package hashes, then run scripts/router-update.py enable-hooks using an available Python 3.10+ runtime. Preserve other rules and hooks, keep one active router, and explain the required hook review without bypassing trust. If installation or setup fails, restore the original folder and configuration.
 ```
 
-The skill names stay `model-router-20` and `model-router`; GPT-6.1 is the supported model version, while v1.1.0 is this package's release version. The earlier repository URL redirects to the new name; use the new URL in fresh installation commands.
+The skill names stay `model-router-20` and `model-router`; GPT-6.1 is the supported model version, while v1.2.0 is this package's release version. The earlier repository URL redirects to the new name; use the new URL in fresh installation commands.
 
 ## Download without Git
 
-Download the [v1.1.0 ZIP](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.1.0.zip) and extract it. Copy the contents of `profiles/20-usd` into `<CODEX_HOME>/skills/model-router-20`, or the root skill files into `<CODEX_HOME>/skills/model-router` for the higher-allowance profile. Keep `SKILL.md`, `GLOBAL-ROUTING.md`, `agents/` and `scripts/` together. Back up an existing installation first, then run the global-routing command below. On Windows the default skills directory is `%USERPROFILE%\.codex\skills`; on macOS/Linux it is `~/.codex/skills`.
+Download the [v1.2.0 ZIP](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.2.0.zip) and extract it. Copy `profiles/20-usd` into `<CODEX_HOME>/skills/model-router-20`, or the root package files into `<CODEX_HOME>/skills/model-router`. Keep `SKILL.md`, `GLOBAL-ROUTING.md`, `version.json`, `agents/`, `references/` and `scripts/` together. Back up an existing installation first, then run both setup commands below. On Windows the default skills directory is `%USERPROFILE%\.codex\skills`; on macOS/Linux it is `~/.codex/skills`.
 
 ## Step 1 — Install
 
-For the higher-allowance profile, clone this repository into your Codex skills directory using `model-router` as the folder name:
+For the higher-allowance profile, install the root package into your Codex skills directory using `model-router` as the folder name:
 
 ```text
 <CODEX_HOME>/skills/model-router/
 ├── SKILL.md
+├── GLOBAL-ROUTING.md
+├── version.json
+├── references/updating.md
+├── scripts/
 └── agents/openai.yaml
 ```
 
@@ -89,15 +99,19 @@ For the US$20 profile, install the `profiles/20-usd` folder as `model-router-20`
 
 ```powershell
 .\scripts\global-routing.ps1
+python .\scripts\router-update.py enable-hooks
 ```
 
 **macOS / Linux**
 
 ```sh
-./scripts/global-routing.sh
+sh ./scripts/global-routing.sh
+python3 ./scripts/router-update.py enable-hooks
 ```
 
 This first-time command is the global setup. It is **not** the same as typing `$model-router` once in a chat: the prefix is not a permanent switch. The scripts add or update only a marked Model Router section in the user-level `AGENTS.md`; they preserve existing instructions and create a backup before changing that file. Preview without changing anything with `-Preview` (PowerShell) or `--preview` (macOS/Linux). Remove the managed section with `-Disable` or `--disable`.
+
+The second command configures update reminders. Use a working Python 3.10+ executable; substitute its full path if needed. Review and trust the new hooks in your client's hook controls (Codex CLI: `/hooks`), then start a new session or restart if needed. Setup does not grant trust automatically. If hooks/runtime are unavailable, routing still works without reminders. [Official hook documentation](https://learn.chatgpt.com/docs/hooks)
 
 ## Step 2 — Use it
 
@@ -112,6 +126,20 @@ $model-router Review this database migration plan. Recommend the lowest suitable
 The skill returns a model, a reasoning-effort recommendation, and a short reason. Choose that combination in Codex, then start the actual task.
 
 For English requests, the confirmation word is `go`. Send it as a standalone message after choosing the model. `go ahead` or a longer sentence is not treated as the confirmation token.
+
+### Step 3 — Updates, when available
+
+When the cached check verifies a newer release, a fourth line can appear:
+
+> Update: Model Router <version> is available. Send "update router" to update.
+
+Send `update router` as a standalone message to upgrade only the router. It does **not** execute the task waiting for confirmation. The updater preserves your allowance profile, verifies the download, backs up your installation and configuration, and rolls back caught installation failures. You may need to review changed hooks again. Send `check router update` for an immediate manual check.
+
+Normal recommendations remain three lines. Background checks run at most once per 24 hours, including failed attempts; explicit manual checks can bypass the cache. A first check can finish after the current recommendation, so a notice may appear on a later task. Offline/errors do not block work. No prompts, conversations or credentials are sent to GitHub; public requests expose ordinary network metadata.
+
+Only a newer stable GitHub **Release** triggers reminders. Pushing commits to the default branch alone does not. This is not an OS push notification, and a normal link cannot install an update with one click.
+
+Disable reminders separately with `python scripts/router-update.py disable-hooks`. The global-routing disable command manages routing only. Before uninstalling, disable both. Customized package files and Git checkouts require manual upgrades; local additions remain in the backup. See [update tests and recovery](docs/update-testing.md).
 
 ## See the two-step workflow
 
@@ -209,6 +237,8 @@ Codex token saving · save Codex tokens · reduce Codex token usage · token-eff
 - `agents/openai.yaml` — skill display metadata and automatic-discovery policy.
 - `GLOBAL-ROUTING.md` — the small, managed user-level instruction block for global mode.
 - `scripts/global-routing.ps1` and `scripts/global-routing.sh` — one-time enable, preview, update, and disable commands.
+- `scripts/router-update.py`, `version.json`, `references/updating.md` — cached reminders, explicit upgrades and their safety contract.
+- `tests/test_updates.py`, `docs/update-testing.md` — offline integration tests and manual client acceptance.
 - `profiles/20-usd/` — a separately installable US$20 profile with its own skill metadata and global-routing scripts.
 - `README.md` and `README.zh-CN.md` — English-first, bilingual documentation.
 - `LICENSE` — the MIT license for reuse and distribution.
@@ -216,7 +246,7 @@ Codex token saving · save Codex tokens · reduce Codex token usage · token-eff
 
 ## Releases and contributing
 
-Current package release: **v1.1.0**, supporting GPT-6.1 Sol. See [Releases](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/releases) for stable versions and [CONTRIBUTING.md](CONTRIBUTING.md) for installation reports, routing examples, translation fixes, and focused pull requests.
+Current package release: **v1.2.0**, supporting GPT-6.1 Sol. See [Releases](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/releases) for stable versions and [CONTRIBUTING.md](CONTRIBUTING.md) for installation reports, routing examples, translation fixes, and focused pull requests.
 
 ## Validate the skill
 

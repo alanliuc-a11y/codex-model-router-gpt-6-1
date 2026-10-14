@@ -8,6 +8,12 @@
 
 如果你想节省令牌、节省 Codex 令牌、降低 Codex 令牌消耗，或提高 Codex 的使用效率，这个技能会在执行前给出一个可操作的选择建议。
 
+## 新增功能：发现新版时提醒更新
+
+1.2.0 版可以在模型推荐下方增加一句更新提醒。你输入「更新路由器」，它才会备份旧版并安装同一档位的新版，不会偷偷更新，也不会自动切换模型。
+
+提醒功能需要可用的运行环境、支持运行检查脚本的 Codex 客户端，以及你首次审核并信任这些脚本。老用户需要先升级一次，才能获得此功能。[测试与限制说明](docs/update-testing.zh-CN.md)
+
 ## 2026 年 10 月 4 日更新：支持 GPT-6.1 Sol
 
 | 任务 | 默认模型 | 建议起点 |
@@ -35,10 +41,10 @@ AutomationBench 可辅助比较跨应用任务，但旧版 GPT-6 Sol 的成绩�
 在 Codex 中复制发送：
 
 ```text
-请把我已安装的 Codex 模型路由器更新到 alanliuc-a11y/codex-model-router-gpt-6-1 仓库的 v1.1.0 版本。先检测当前安装档位：model-router-20 使用 profiles/20-usd，model-router 使用仓库根目录。技能安装器不会覆盖已有目录，请先把旧技能备份到技能目录外，再使用技能安装器安装同一档位，运行全局启用脚本，保留其他 AGENTS.md 规则并核对安装文件。只保留一个生效的路由器；如果安装失败，请恢复备份。
+请把我已安装的 Codex 模型路由器更新到 alanliuc-a11y/codex-model-router-gpt-6-1 仓库的 v1.2.0 版本。先检测档位：model-router-20 使用 profiles/20-usd，model-router 使用仓库根目录。先把旧技能及 AGENTS.md、hooks.json 备份到技能目录外，再使用技能安装器安装同一档位。运行全局启用脚本，核对版本清单和文件校验值，并用本机已有的运行环境运行 scripts/router-update.py enable-hooks。保留其他规则和检查脚本，只保留一个生效路由器。告诉我如何审核并信任新配置，不要绕过审核。如果安装或配置失败，请恢复原目录及配置。
 ```
 
-技能名称保持不变。GPT-6.1 是支持的模型版本，v1.1.0 是本工具的发布版本。旧仓库地址会重定向，今后的安装请使用新地址。
+技能名称保持不变。GPT-6.1 是支持的模型版本，v1.2.0 是本工具的发布版本。旧仓库地址会重定向，今后的安装请使用新地址。
 
 ## 先选择安装档位
 
@@ -58,7 +64,7 @@ AutomationBench 可辅助比较跨应用任务，但旧版 GPT-6 Sol 的成绩�
 在 Codex 中复制并发送下面整段话：
 
 ```text
-请使用技能安装器从 GitHub 仓库 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.1.0 版本的 Codex 技能；仓库内路径使用 profiles/20-usd，技能名称使用 model-router-20。安装完成后，请运行当前操作系统对应的附带脚本，启用它的全局路由功能；保留我现有的 AGENTS.md 规则，并在准备好后告诉我。
+请使用技能安装器从 GitHub 仓库 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.2.0 版本；路径使用 profiles/20-usd，名称使用 model-router-20。安装后运行全局启用脚本，再用本机已有的运行环境运行 scripts/router-update.py enable-hooks，配置更新提醒。保留我的 AGENTS.md 规则及其他检查脚本。告诉我如何审核并信任新配置，不要绕过审核；缺少运行环境时先问我，不要擅自安装。分别说明哪些步骤已完成。
 ```
 
 ### 高额度档
@@ -66,24 +72,28 @@ AutomationBench 可辅助比较跨应用任务，但旧版 GPT-6 Sol 的成绩�
 在 Codex 中复制并发送下面**整段话**。不要只发送一个裸 GitHub 链接。
 
 ```text
-请使用技能安装器从 GitHub 仓库 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.1.0 版本的 Codex 技能；仓库内路径使用 .，技能名称使用 model-router。安装完成后，请运行当前操作系统对应的附带脚本，启用它的全局路由功能；保留我现有的 AGENTS.md 规则，并在准备好后告诉我。
+请使用技能安装器从 GitHub 仓库 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.2.0 版本；路径使用 .，名称使用 model-router。安装后运行全局启用脚本，再用本机已有的运行环境运行 scripts/router-update.py enable-hooks，配置更新提醒。保留我的 AGENTS.md 规则及其他检查脚本。告诉我如何审核并信任新配置，不要绕过审核；缺少运行环境时先问我，不要擅自安装。分别说明哪些步骤已完成。
 ```
 
 高额度档位于仓库根目录，因此路径是 `.`；20 美金档位于 `profiles/20-usd`。全局路由启用完成后，以后的任务都可以像平时一样直接输入，不需要每次添加 skill 前缀。
 
 ## 手动下载安装
 
-下载 [v1.1.0 压缩包](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.1.0.zip) 并解压。20 美金档把 `profiles/20-usd` 内的文件复制到用户技能目录中的 `model-router-20` 文件夹；高额度档把根目录技能文件复制到 `model-router` 文件夹。`SKILL.md`、`GLOBAL-ROUTING.md`、`agents` 和 `scripts` 必须放在一起。已有安装先备份，然后运行下方全局启用命令。
+下载 [v1.2.0 压缩包](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.2.0.zip) 并解压。20 美金档复制 `profiles/20-usd` 到用户技能目录中的 `model-router-20` 文件夹；高额度档把根目录技能文件复制到 `model-router`。`SKILL.md`、`GLOBAL-ROUTING.md`、`version.json`、`agents`、`references` 和 `scripts` 必须放在一起。已有安装先备份，再运行下方两条配置命令。
 
 默认用户技能目录：Windows 为 `%USERPROFILE%\.codex\skills`，其他系统为 `~/.codex/skills`。
 
 ## 第一步：安装
 
-高额度档请把本仓库克隆到 Codex skills 目录中，文件夹名称使用 `model-router`：
+高额度档请把根目录技能包安装到 Codex 技能目录中，文件夹名称使用 `model-router`：
 
 ```text
 <CODEX_HOME>/skills/model-router/
 ├── SKILL.md
+├── GLOBAL-ROUTING.md
+├── version.json
+├── references/updating.md
+├── scripts/
 └── agents/openai.yaml
 ```
 
@@ -93,15 +103,19 @@ AutomationBench 可辅助比较跨应用任务，但旧版 GPT-6 Sol 的成绩�
 
 ```powershell
 .\scripts\global-routing.ps1
+python .\scripts\router-update.py enable-hooks
 ```
 
 **macOS / Linux**
 
 ```sh
-./scripts/global-routing.sh
+sh ./scripts/global-routing.sh
+python3 ./scripts/router-update.py enable-hooks
 ```
 
 这一次命令就是全局设置。请注意：这**不是**在聊天里第一次加一次 `$model-router` 就永久生效；前缀本身不是开关。脚本只会添加或更新用户级 `AGENTS.md` 中带标记的 Model Router 区块：保留原有规则，并在修改前创建备份。PowerShell 使用 `-Preview`、macOS/Linux 使用 `--preview` 可先预览；分别用 `-Disable`、`--disable` 删除受管理的区块。
+
+第二条命令配置更新提醒，需要本机可运行的 Python 3.10 或更高版本；必要时把命令中的程序名换成完整路径。首次配置后，请在客户端的脚本审核入口检查并信任新配置；命令行客户端可使用 `/hooks`。必要时新建会话或重启。配置完成不等于自动取得信任。客户端或运行环境不支持时，普通路由仍可使用，只是没有自动提醒。[官方说明](https://learn.chatgpt.com/docs/hooks)
 
 ## 第二步：使用
 
@@ -114,6 +128,20 @@ $model-router 审核这份数据库迁移方案，推荐足够且最节省的模
 ```
 
 技能会返回模型、推理强度和简短原因。请先在 Codex 中选好对应组合，再开始实际任务。中文交流时，确认词为 `执行` 或 `按推荐执行`。
+
+### 第三步：有新版时怎么更新
+
+检查确认有新版时，推荐下方可以增加第四行：
+
+> 更新：模型路由器已有新版（版本号），输入“更新路由器”即可更新。
+
+单独发送「更新路由器」，只更新技能，**不会执行正在等待确认的任务**。更新器保留你安装的档位，核对下载文件、备份旧技能及配置；安装过程中可捕获的失败会恢复旧版。配置变更后可能需要重新审核检查脚本。想立即检查时，单独发送「检查路由器更新」。
+
+没有新版时仍是三行。后台每二十四小时最多检查一次，失败也会缓存，避免断网时反复请求；手动检查可跳过缓存。首次检查可能晚于本次推荐完成，因此下一项任务才出现提醒也属于正常情况。检查失败不阻止工作。不会向 GitHub 发送你的任务、聊天或密钥，但联网请求仍会透露通常的网络信息。
+
+我们必须在 GitHub 创建新的正式发布版本才会触发提醒，仅提交代码不会触发。这不是系统推送通知，普通链接也不能点击一下就安装。
+
+关闭提醒时运行 `python scripts/router-update.py disable-hooks`，不影响路由或其他检查脚本。原来的禁用命令只关闭路由，卸载前应分别关闭两者。修改过技能文件或采用 Git 克隆安装的用户应手动升级；自行添加的文件会保留在备份中。[测试及恢复说明](docs/update-testing.zh-CN.md)
 
 ## 看一眼实际操作流程
 
@@ -209,6 +237,8 @@ $model-router 审核这份数据库迁移方案，推荐足够且最节省的模
 - `agents/openai.yaml`：skill 的展示信息与自动发现策略。
 - `GLOBAL-ROUTING.md`：用于全局模式的小型、受管理用户级规则区块。
 - `scripts/global-routing.ps1`、`scripts/global-routing.sh`：一次性启用、预览、更新和禁用命令。
+- `scripts/router-update.py`、`version.json`、`references/updating.md`：缓存提醒、安全升级及维护规则。
+- `tests/test_updates.py`：离线集成测试；`docs/update-testing.zh-CN.md`：客户端测试与恢复步骤。
 - `profiles/20-usd/`：可独立安装的 20 美金档，含自己的 skill 信息和全局路由脚本。
 - `README.md`、`README.zh-CN.md`：英文在前、中文配套的说明文档。
 - `LICENSE`：允许复用和分发的 MIT 许可证。

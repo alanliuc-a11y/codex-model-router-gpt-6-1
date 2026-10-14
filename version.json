@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "version": "1.2.0",
+  "repository": "alanliuc-a11y/codex-model-router-gpt-6-1",
+  "profile": "model-router",
+  "source_path": ".",
+  "files": {
+    "SKILL.md": "1ec85d7f89cc01087682290b1536c8608dff70687e7bb840dd417b1ab276c696",
+    "GLOBAL-ROUTING.md": "884a5fb37d025014dab25e3ac413fa44a8cdc092c79ffcb6ad433297abd1ad21",
+    "agents/openai.yaml": "b0008b7711c69e68139387a9e214d4c3201d26941b872a2b882322f3d71bc8eb",
+    "scripts/global-routing.ps1": "5190e310ee2e204518c2d6f65a80f8759250e779ec05427fcd698dc179f96dc7",
+    "scripts/global-routing.sh": "ba7e5bf0a3d2eba94e618e1753e34ffe27a7c0d7d13499a5221d6ead564bec00",
+    "scripts/router-update.py": "fa9ff3698e078c3281a6926b3c48ba1357962c5c35e5a9f6208e6bd48b6ac2e0",
+    "references/updating.md": "6c7e48b581727750de5a3e4babb21f421b3fcf46b7c17f8e5e90d6f45c9b0579"
+  }
+}

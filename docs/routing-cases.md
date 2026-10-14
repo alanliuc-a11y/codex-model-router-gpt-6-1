@@ -2,7 +2,7 @@
 
 Default models are GPT-6 Luna, GPT-6.1 Sol and GPT-6 Astra; GPT-6 Sol and GPT-5.6 models are legacy-only. Reviewed 2026-10-04.
 
-These are manual acceptance cases, not measured model-quality benchmarks or automated behavioral test results. Use each prompt in a fresh conversation, then repeat the complex prompts after several small-edit turns. Require a single three-line recommendation with a task-specific reason.
+These are manual acceptance cases, not measured model-quality benchmarks or automated behavioral test results. Use each prompt in a fresh conversation, then repeat the complex prompts after several small-edit turns. Require a single three-line recommendation with a task-specific reason, plus at most one verified update line. Maintenance commands do not execute pending tasks. See [update acceptance tests](update-testing.md).
 
 | Task | Base route expectation | US$20 final expectation |
 | --- | --- | --- |

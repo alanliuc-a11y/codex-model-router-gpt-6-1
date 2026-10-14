@@ -1,6 +1,15 @@
 # Changelog
 
-Current package: v1.1.0; supported default workhorse: GPT-6.1 Sol. Older entries below are historical.
+Current package: v1.2.0; supported default workhorse: GPT-6.1 Sol. Older entries below are historical.
+
+## v1.2.0 — 2026-10-14
+
+- Added cache-only update notices below routing recommendations in the response language, with asynchronous daily release checks.
+- Added explicit maintenance commands, exempt from routing confirmation but never confirmation to run a pending task.
+- Added same-profile, stable-release upgrades with staged file-hash validation, full backups and rollback for caught replacement failures.
+- Added hooks setup/disable preserving other handlers; trust review remains mandatory and never bypassed.
+- Added version manifests, offline integration tests and bilingual setup, upgrade, manual acceptance and recovery guides.
+- Retained both profiles' model catalog, effort rubric and one-pass US$20 mapping unchanged.
 
 ## v1.1.0 — 2026-10-04
 
