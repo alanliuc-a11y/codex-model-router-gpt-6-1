@@ -1,6 +1,15 @@
 # Changelog
 
-Current package: v1.2.1; supported default workhorse: GPT-6.1 Sol. Older entries below are historical.
+Current package: v1.3.0; managed catalog: GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol and GPT-6 Astra. Older entries below are historical.
+
+## v1.3.0 — 2026-10-28
+
+- Added GPT-6.1 Terra for bounded source-based writing, visual interpretation, defined computer use and scoped known-cause fixes with concrete verification.
+- Retained strict Luna eligibility and Sol/Astra for coupled, ambiguous or costly-to-validate work; introduced a whole-task Terra gate rather than downgrading every Sol task.
+- Preserved the one-pass, Astra-only US$20 overrides; Terra base routes remain unchanged.
+- Verified Terra API and Codex reasoning differences, client minimum version and local catalog options; API None is not a Codex picker recommendation.
+- Updated both installable profiles, global fallbacks, UI titles, bilingual installation/use/upgrade/ZIP instructions and manual routing acceptance cases.
+- Kept the repository address and skill names stable for installed updaters; no speed-setting changes, silent model switches or guaranteed savings.
 
 ## v1.2.1 — 2026-10-14
 

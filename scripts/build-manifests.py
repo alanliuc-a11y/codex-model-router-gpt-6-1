@@ -11,7 +11,7 @@ FILES = ["SKILL.md", "GLOBAL-ROUTING.md", "agents/openai.yaml",
 
 
 def build(root, profile, path):
-    manifest = {"schema": 1, "version": "1.2.1",
+    manifest = {"schema": 1, "version": "1.3.0",
                 "repository": "alanliuc-a11y/codex-model-router-gpt-6-1",
                 "profile": profile, "source_path": path,
                 "files": {name: hashlib.sha256((root / name).read_bytes().replace(b"\r\n", b"\n")).hexdigest()

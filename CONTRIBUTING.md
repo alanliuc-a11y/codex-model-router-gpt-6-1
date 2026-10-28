@@ -1,8 +1,8 @@
 # Contributing
 
-Thank you for helping improve GPT-6.1 Sol Codex Model Router (package v1.2.1).
+Thank you for helping improve GPT-6.1 Terra + Sol Codex Model Router (package v1.3.0).
 
-The default catalog is GPT-6 Luna, GPT-6.1 Sol and GPT-6 Astra. Recheck official documentation and the client catalog before changing it; do not relabel older benchmark scores as a newer model's results. Installation changes must update fresh-install, ZIP-download and existing-install upgrade instructions in both languages.
+The default catalog is GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol and GPT-6 Astra. Recheck official documentation and the client catalog before changing it; do not relabel older benchmark scores as a newer model's results. Installation changes must update fresh-install, ZIP-download and existing-install upgrade instructions in both languages.
 
 Useful contributions include:
 
@@ -20,3 +20,5 @@ This project recommends model and reasoning choices. It must not claim automatic
 For updater changes, run `python -m unittest discover -s tests -v`; update both installable copies of `scripts/router-update.py` and `references/updating.md`, then run `python scripts/build-manifests.py`. The manifests hash LF-normalized package text, excluding the manifest itself. A release-version change must update the builder, both skill headers, bilingual fresh-install/ZIP/upgrade instructions, release notes and changelog. Never rewrite published tags. Create a new stable GitHub Release only after its tagged package passes verification; a branch push alone does not notify users.
 
 Test offline checks, authorization, language separation, both profiles, preserved unrelated config, broken downloads and rollback. Do not bypass hook trust in client acceptance tests. CI checks scripts and package integrity; it does not prove desktop hook execution or model-routing quality. Manual acceptance: [English](docs/update-testing.md), [Chinese](docs/update-testing.zh-CN.md).
+
+Terra policy changes need whole-task cases for writing, visual interpretation, defined computer use and scoped known-cause fixes, plus exclusions for coupled states, repeated unknown bugs and costly hidden failures. Keep the Astra-only US$20 mappings unchanged. [Routing cases](docs/routing-cases.md) are manual acceptance prompts, not proof of empirical routing quality. Keep the repository URL stable for installed updaters; update public titles, topics and descriptions instead.

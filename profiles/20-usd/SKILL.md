@@ -1,13 +1,13 @@
 ---
 name: model-router-20
-description: Recommend a quota-conserving Codex model and reasoning effort for the US$20 allowance tier. Use for model selection, reasoning-level selection, or task routing; it recommends but never switches the already-running root model.
+description: Recommend a quota-conserving Codex model and reasoning effort across Luna, GPT-6.1 Terra/Sol and Astra for the US$20 allowance tier. Use for model selection, reasoning-level selection, or task routing; recommends but never switches the already-running root model.
 metadata:
   short-description: Recommend efficient routing for the US$20 allowance tier
 ---
 
 # Model Router — US$20 Profile / 模型路由器（20 美金档）
 
-Catalog revision: 2026-10-04; package release v1.2.1 (2026-10-14).
+Catalog revision: 2026-10-28; package release v1.3.0 (2026-10-28).
 
 Recommend the lowest-cost setup that is likely to complete the task correctly. Treat model choice and reasoning effort as separate decisions. This skill does not change speed settings.
 
@@ -24,7 +24,7 @@ This package is the US$20 allowance profile. First determine the route using the
 
 ## Managed catalog
 
-In Codex, this package manages `GPT-6 Luna`, `GPT-6.1 Sol`, and `GPT-6 Astra`. Do not implicitly defer to a generic or cross-platform routing skill. Do not silently substitute a different model merely because it appears in the current picker.
+In Codex, this package manages `GPT-6 Luna`, `GPT-6.1 Terra`, `GPT-6.1 Sol`, and `GPT-6 Astra`. Do not implicitly defer to a generic or cross-platform routing skill. Do not silently substitute a different model merely because it appears in the current picker.
 
 ## Evaluate the whole task before choosing a model
 
@@ -36,7 +36,15 @@ Choose Luna only when ALL of these conditions are met:
 - No coupled changes to multiple features, screens, roles, state transitions, or data flows.
 - Verification is direct and local, with cheap recovery if wrong.
 
-Exclude Luna for unknown-cause or repeatedly failing bugs; new features with lifecycle or interaction state; cross-screen consistency; role-dependent publishing, permissions, uploads, persistence, or synchronization; and requests combining several interacting changes. A mock/demo status does not make these interactions trivial. Use Sol Medium for scoped implementation and High for ambiguity or difficult diagnosis, and evaluate the Astra gate for broad integration work. When evidence is insufficient to establish every Luna condition, start from Sol Medium and assess upward.
+Exclude Luna for unknown-cause or repeatedly failing bugs; new features with lifecycle or interaction state; cross-screen consistency; role-dependent publishing, permissions, uploads, persistence, or synchronization; and requests combining several interacting changes. A mock/demo status does not make these interactions trivial.
+
+After checking Luna eligibility, consider GPT-6.1 Terra only when ALL of these are established:
+- A bounded outcome with clear source material, requirements and acceptance criteria.
+- The work primarily needs source-grounded writing, image/chart/screen interpretation, a defined computer-use flow, or a scoped known-cause code fix with limited judgment.
+- Verification is concrete: compare facts with the source, reopen saved records, inspect the actual rendered result, or run focused regression tests.
+- No unresolved repeated bug, coupled lifecycle/role/permission/data-flow change, broad discovery, conflicting evidence or costly hidden failure. Irreversible actions still need the original task's authorization; a visual interface does not make them low-risk.
+
+Use Luna for mechanical work already meeting all Luna conditions, Terra for these bounded judgment/visual tasks, and Sol Medium when Terra's conditions are not established. Use Sol High for interacting features, ambiguity or difficult diagnosis, and evaluate Astra for demanding integration. Do not route a complex task to Terra merely because its first step is a screenshot or a small edit.
 
 Route the whole requested outcome, not just the easiest first step. Splitting implementation into small steps does not justify assigning the entire task to Luna. Apply any allowance-profile override only AFTER this base assessment, exactly once; never remap the resulting Astra Low a second time.
 
@@ -45,7 +53,9 @@ Before responding, check the current task against these conditions and return th
 ## Routing rubric
 
 - **GPT-6 Luna + Low/Medium:** narrow, explicit, repeatable work meeting ALL Luna conditions above. Start at Low for mechanical transformations, Medium for bounded coding.
-- **GPT-6.1 Sol + Medium:** normal default for production work, scoped coding, document analysis and known bug fixes.
+- **GPT-6.1 Terra + Low/Medium:** bounded source-based writing, visual interpretation, defined computer use, or a scoped known-cause code fix meeting ALL Terra conditions above. Medium is this router's normal starting point; Low for a modest task requiring only limited judgment.
+- **GPT-6.1 Terra + High:** a still-bounded Terra task with dense visual detail or stronger verification needs. Use XHigh/Max only for exceptional bounded depth or a demonstrated shortfall, not to keep an unsuitable complex task on Terra.
+- **GPT-6.1 Sol + Medium:** normal fallback for production work not meeting Terra's conditions; broader implementation, multi-source synthesis and analysis.
 - **GPT-6.1 Sol + High:** interacting features, multi-file implementation, ambiguous requirements, unknown/repeated bugs or difficult single-domain decisions.
 - **GPT-6.1 Sol + XHigh:** exceptionally difficult single-domain work, a demonstrated shortfall at High, or the US$20 allowance override. Do not default to Max.
 - **GPT-6 Astra + Low/Medium:** at least two Astra signals: three demanding work modes; end-to-end discovery through delivery; several interacting systems/artifact types; a long dependency chain; weak validation/conflicting evidence/costly hidden failures. Low for explicit strongly verifiable work, otherwise Medium.
@@ -55,19 +65,19 @@ Before responding, check the current task against these conditions and return th
 
 Astra does not require a failed Sol attempt. Ordinary multi-file work alone does not establish two Astra signals. Assess actual ambiguity, dependencies and failure consequences, not just count tools.
 
-### Evidence and availability (reviewed 2026-10-04)
+### Evidence and availability (reviewed 2026-10-28)
 
-Default catalog: GPT-6 Luna, GPT-6.1 Sol and GPT-6 Astra. GPT-6 Sol and GPT-5.6 models are legacy-only when explicitly requested or the user confirms a legacy-only picker. Do not invent GPT-6.1 Luna, Terra or Astra. Do not silently fall back to the older Sol.
+Default catalog: GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol and GPT-6 Astra. GPT-6 Sol and GPT-5.6 models are legacy-only when explicitly requested or the user confirms a legacy-only picker. GPT-6.1 Terra is verified, not a speculative name; do not invent GPT-6.1 Luna or Astra. Do not silently fall back to an older model or substitute Sol when Terra is missing: report the exact picker mismatch and resolve it with the user.
 
-Official guidance positions GPT-6.1 Sol for complex coding, computer use and professional work at lower cost than Astra. This supports making it the normal workhorse; it does not establish equal capability or subscription savings. Preserve effective reasoning effort on upgrade before evaluating a lower effort on representative tasks. Start ordinary production tasks at Medium; use High for coupled logic, edge cases, uncertainty or diagnosis. Low can fit a modest, specified fix with direct checks when Luna is excluded because limited judgment is required. XHigh/Max need exceptional depth or a demonstrated shortfall; the US$20 override uses XHigh by policy.
+Official guidance adds GPT-6.1 Terra for clear writing, visual understanding, defined computer use and scoped fixes. Compare Terra with Sol on the same sources and effort, checking saved results, factual fidelity and regressions. This router places eligible bounded work on Terra Medium; it does not downgrade all Sol work. Sol remains the complex-work workhorse, with High for coupled logic/ambiguity and XHigh for exceptional depth or the unchanged US$20 override. Preserve effective effort when comparing models before testing a lower effort. API prices do not establish Codex subscription savings.
 
 A routine multi-file or two-tool task stays on Sol. An explicit cross-system workflow with strong validation can start at Sol High. Evaluate Astra for genuinely demanding integration with at least two signals and substantial coordination/long-context difficulty or costly hidden failures. Do not demand a failed Sol run for these tasks. Do not promote every end-to-end edit solely because it includes delivery.
 
-The reviewed local Codex catalog exposes Low/Medium/High/XHigh/Max on all three and Ultra on GPT-6.1 Sol/Astra. Recommend only the actual model-picker options. GPT-6.1 Sol's API does not support None or Minimal. Codex Ultra is client-specific; its availability does not authorize delegation.
+The reviewed local Codex catalog lists Low/Medium/High/XHigh/Max on all four and Ultra on GPT-6.1 Terra/Sol and GPT-6 Astra. This is catalog evidence, not proof of a user's current picker. Terra's API also supports None, but this Codex catalog does not expose it: never infer a picker option from the API. Do not recommend Luna Ultra, API Minimal, or an unavailable combination. Terra requires Codex CLI 0.159.0+; plan, client, workspace and rollout still control access. Codex Ultra is client-specific; availability does not authorize delegation.
 
-AutomationBench is one source for cross-app automation, not a universal quality ranking or a Codex quota meter. Previous 2026-09-27 GPT-6 Sol scores must not be relabeled as GPT-6.1 Sol. No comparable GPT-6.1 Sol effort table was verified for this update; do not infer its scores or guarantee savings. Do not merge private-set, public-set and AutomationBench-AA scores. Benchmark evidence cannot relax Luna's eligibility or prove that maximum effort always wins.
+AutomationBench is one source for cross-app automation, not a universal quality ranking or a Codex quota meter. Previous 2026-09-27 GPT-6 Sol scores must not be relabeled as GPT-6.1 Sol. No comparable GPT-6.1 Terra/Sol effort table was verified for this update; do not infer scores or guarantee savings. Do not merge private-set, public-set and AutomationBench-AA scores. Benchmark evidence cannot relax Luna's eligibility or prove that maximum effort always wins.
 
-Sources: [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [Codex model guidance](https://learn.chatgpt.com/docs/agent-configuration/subagents), [AutomationBench](https://zapier.com/benchmarks). Refresh these sources before claiming the catalog or ranking remains current.
+Sources reviewed 2026-10-28: [GPT-6.1 Terra specifications](https://developers.openai.com/api/docs/models/gpt-6.1-terra), [model selection](https://learn.chatgpt.com/docs/model-selection), [Codex models and availability](https://learn.chatgpt.com/docs/models), [launch changelog](https://learn.chatgpt.com/docs/changelog). Routing/effort starting points are this project's policy, not official quality guarantees.
 
 ## Required US$20 override
 
@@ -82,7 +92,7 @@ After determining the base route, apply these replacements exactly:
 | GPT-6 Astra + Max | GPT-6 Astra + Low |
 | GPT-6 Astra + Ultra | GPT-6 Astra + Low |
 
-Leave Luna and Sol base routes unchanged. This profile intentionally trades some reasoning depth for allowance conservation. Do not present the lower final effort as equivalent in quality to the original base route.
+Leave Luna, Terra and Sol base routes unchanged. Never apply an Astra override to a Terra route or map Astra directly to Terra. This profile intentionally trades some reasoning depth for allowance conservation. Do not present the lower final effort as equivalent in quality to the original base route.
 
 State that the final choice follows the US$20 allowance policy when the override changes an Astra base route. Give the user one final recommendation only; do not show a second competing base-route recommendation.
 
@@ -92,7 +102,7 @@ Choose one output language before answering. Use Chinese when the request is pre
 
 For a Chinese routing-only request, return these three short lines (plus the optional verified update line below):
 
-`模型：<GPT-6 Luna|GPT-6.1 Sol|GPT-6 Astra>；推理强度：<轻|中|高|极高|最大|超强>`
+`模型：<GPT-6 Luna|GPT-6.1 Terra|GPT-6.1 Sol|GPT-6 Astra>；推理强度：<轻|中|高|极高|最大|超强>`
 
 `原因：<一条简短、针对任务的原因>`
 
@@ -102,7 +112,7 @@ Map reasoning labels as follows: `Low` → `轻`, `Medium` → `中`, `High` →
 
 For an English routing-only request, return these three short lines (plus the optional verified update line below):
 
-`Model: <GPT-6 Luna|GPT-6.1 Sol|GPT-6 Astra>; reasoning effort: <Low|Medium|High|XHigh|Max|Ultra>`
+`Model: <GPT-6 Luna|GPT-6.1 Terra|GPT-6.1 Sol|GPT-6 Astra>; reasoning effort: <Low|Medium|High|XHigh|Max|Ultra>`
 
 `Reason: <one concise, task-specific reason>`
 
