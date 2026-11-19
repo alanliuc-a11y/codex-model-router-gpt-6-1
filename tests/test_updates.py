@@ -90,7 +90,7 @@ class Updates(unittest.TestCase):
     def test_repository_packages_and_profile_copies_match(self):
         for folder in (ROOT, ROOT / "profiles/20-usd"):
             router.verify_package(folder, router.load_package(folder))
-        for relative in ("scripts/router-update.py", "references/updating.md"):
+        for relative in ("scripts/router-update.py", "references/updating.md", "references/pricing-policy.md"):
             self.assertEqual((ROOT / relative).read_bytes().replace(b"\r\n", b"\n"),
                              (ROOT / "profiles/20-usd" / relative).read_bytes().replace(b"\r\n", b"\n"))
 
@@ -209,6 +209,16 @@ class Updates(unittest.TestCase):
         manifest = router.stage_archive(self.archive(profile="model-router"), target, "model-router", "1.3.0")
         self.assertEqual(manifest["profile"], "model-router")
         router.verify_package(target, manifest)
+
+    def test_old_required_subset_accepts_new_packaged_pricing_resource(self):
+        payload = self.archive()
+        target = Path(self.temp.name) / "old-validator-new-resource"
+        # v1.3's validator required the old seven files but accepted listed extras.
+        with patch.object(router, "REQUIRED", router.REQUIRED - {"references/pricing-policy.md"}):
+            manifest = router.stage_archive(payload, target, self.profile, "1.3.0")
+        router.verify_package(target, manifest)
+        self.assertEqual((target / "references/pricing-policy.md").read_bytes(),
+                         (ROOT / "profiles/20-usd/references/pricing-policy.md").read_bytes())
 
     def test_upgrade_preserves_disabled_reminders(self):
         payload = self.archive()

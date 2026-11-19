@@ -32,7 +32,7 @@ END = "<!-- model-router:global-end -->"
 PROFILES = {"model-router": ".", "model-router-20": "profiles/20-usd"}
 REQUIRED = {"SKILL.md", "GLOBAL-ROUTING.md", "agents/openai.yaml",
             "scripts/global-routing.ps1", "scripts/global-routing.sh",
-            "scripts/router-update.py", "references/updating.md"}
+            "scripts/router-update.py", "references/updating.md", "references/pricing-policy.md"}
 
 
 class UpdateError(Exception):

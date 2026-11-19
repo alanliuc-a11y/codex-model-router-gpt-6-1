@@ -1,53 +1,48 @@
-# GPT-6.1 Terra + Sol Codex Model Router — save tokens, choose the right model
+# Codex Model Router — GPT-6.2 + GPT-6.1 Sol, value first
 
 **English** | [Chinese guide](README.zh-CN.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-7c3aed.svg)](LICENSE) [![Latest release](https://img.shields.io/github/v/release/alanliuc-a11y/codex-model-router-gpt-6-1?display_name=tag&color=06b6d4)](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/releases)
 
-Model Router recommends a Codex model and reasoning effort before work begins. Select the recommendation yourself, then send `go` to continue. It does not silently switch your model, change speed settings or guarantee a fixed token saving.
+Choose a capable model and reasoning effort before work begins. Select the recommendation yourself, then send `go`. The router does not silently switch models, change speed settings or guarantee fixed token savings.
 
-## New in v1.3.0 — GPT-6.1 Terra
+## v1.4.0: newer models, not newer-at-any-cost
 
-The router now chooses among **GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol and GPT-6 Astra**. Terra fills the gap between mechanical tasks and complex projects: source-based writing, interpreting charts/screens, defined computer-use tasks and scoped known-cause code fixes with clear checks.
+Candidates: **GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol, GPT-6.2 Sol and GPT-6.2 Astra**. GPT-6.1 Sol remains an active value choice, not an obsolete fallback. Luna and Terra keep their verified versions.
 
-This follows the [official Terra specifications](https://developers.openai.com/api/docs/models/gpt-6.1-terra) and [model-selection guidance](https://learn.chatgpt.com/docs/model-selection), reviewed October 28, 2026. Terra does not replace every Sol route, and a screenshot does not make a complex workflow simple.
+Choose by quality, real availability, context, effort and rework. The **ChatGPT Plus** strategy retains a proven 6.1 Sol baseline; the **ChatGPT Pro** strategy considers 6.2 Sol first but retains 6.1 for proven value or preference. These are project policies, not official OpenAI routing algorithms.
 
-The repository URL and skill names are unchanged, so existing installations can still find updates. Current package version: **v1.3.0**. GPT-6.1 is the model family, not the package version.
+The official Standard-speed credit rates for Sol 6.1 and 6.2 match. Neither is automatically cheaper per completed task. Official subscription guidance also expressly exempts 6.1 Sol from long-context surcharge. Check your actual allowance and fixed mode; do not convert API prices into included tasks. [Official pricing](https://learn.chatgpt.com/docs/pricing), reviewed November 19, 2026.
 
-## Step 1 — Install
+## Step 1 — Install for your subscription
 
-### Easiest: ask Codex to install it
+Use your **official subscription name**, not a monthly-price band. Choose one strategy; do not infer your plan from model access or a dollar amount.
 
-Choose **one** allowance profile and paste the matching complete message into Codex. A bare repository URL is not an installation request.
+### ChatGPT Plus
 
-**US$20 allowance profile**
-
-```text
-Use the Skill Installer to install v1.3.0 from GitHub repository alanliuc-a11y/codex-model-router-gpt-6-1, path profiles/20-usd, named model-router-20. Run the installed global-routing script, then use an available Python 3.10+ runtime to run scripts/router-update.py enable-hooks. Preserve my other AGENTS.md rules and hooks. Explain how to review and trust the new hooks; do not bypass trust or install a runtime without asking. Report which steps are verified.
-```
-
-**Higher-allowance profile, such as 5× or 20×**
+Paste this complete request into Codex:
 
 ```text
-Use the Skill Installer to install v1.3.0 from GitHub repository alanliuc-a11y/codex-model-router-gpt-6-1, path ., named model-router. Run the installed global-routing script, then use an available Python 3.10+ runtime to run scripts/router-update.py enable-hooks. Preserve my other AGENTS.md rules and hooks. Explain how to review and trust the new hooks; do not bypass trust or install a runtime without asking. Report which steps are verified.
+Use the Skill Installer to install v1.4.0 from alanliuc-a11y/codex-model-router-gpt-6-1, path profiles/20-usd, named model-router-20, for the ChatGPT Plus value-first strategy. Run the installed global-routing script, then scripts/router-update.py enable-hooks with an available Python 3.10+ runtime. Preserve my other AGENTS.md rules and hooks. Explain required hook review without bypassing trust. Ask before installing a runtime and report which steps are verified.
 ```
 
-These are this project's allowance strategies, not official OpenAI plan names or usage guarantees. Both use the same four-model rubric. The US$20 profile applies one additional rule **after** the base route:
+### ChatGPT Pro
 
-| Original Astra route | US$20 final recommendation |
-| --- | --- |
-| Astra Low or Medium | GPT-6.1 Sol XHigh |
-| Astra High, XHigh, Max or Ultra | GPT-6 Astra Low |
+```text
+Use the Skill Installer to install v1.4.0 from alanliuc-a11y/codex-model-router-gpt-6-1, path ., named model-router, for the ChatGPT Pro strategy. Run the installed global-routing script, then scripts/router-update.py enable-hooks with an available Python 3.10+ runtime. Preserve my other AGENTS.md rules and hooks. Explain required hook review without bypassing trust. Ask before installing a runtime and report which steps are verified.
+```
 
-Luna, Terra and Sol routes remain unchanged. Never remap the resulting Astra Low again or substitute Terra for the Astra override. These choices trade reasoning depth for allowance conservation; they are not quality equivalences. The higher-allowance profile keeps the base route unchanged.
+Business, Enterprise, Edu, Free/Go and API-key setups need their own seat, model-availability and usage checks; do not silently assign them Pro rules or promise all five models. Pro variants also differ in allowance.
 
-### Download and install manually
+The identifiers `model-router-20` and `profiles/20-usd` are historical compatibility paths, **not subscription selection labels**. Keep them so old installers/updaters work. The repository URL likewise keeps its historical `gpt-6-1` suffix; that is not a model-version limit.
 
-Download the [v1.3.0 ZIP](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.3.0.zip). For the US$20 profile, copy `profiles/20-usd` to `<CODEX_HOME>/skills/model-router-20`. For the higher-allowance profile, copy the root package files to `<CODEX_HOME>/skills/model-router`.
+### Download manually
 
-Keep these together: `SKILL.md`, `GLOBAL-ROUTING.md`, `version.json`, `agents/`, `references/` and `scripts/`. Back up an existing installation outside the skills directory before replacing it. Install only one profile.
+Download the [v1.4.0 ZIP](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.4.0.zip). Copy `profiles/20-usd` to `<CODEX_HOME>/skills/model-router-20` for Plus, or the root package files to `<CODEX_HOME>/skills/model-router` for Pro.
 
-Default Codex home is `%USERPROFILE%\.codex` on Windows and `~/.codex` on macOS/Linux. From the installed profile folder, run:
+Keep `SKILL.md`, `GLOBAL-ROUTING.md`, `version.json`, `agents/`, `references/` and `scripts/` together. Back up an existing install outside skill discovery first. Install only one strategy.
+
+From the installed skill folder:
 
 **Windows PowerShell**
 
@@ -63,95 +58,98 @@ sh ./scripts/global-routing.sh
 python3 ./scripts/router-update.py enable-hooks
 ```
 
-Use a working Python 3.10+ executable, substituting its full path when needed. The first command enables prefix-free routing by updating only the marked section in your user-level `AGENTS.md`, preserving other rules and creating a backup. The second merges reminder hooks while preserving unrelated handlers.
+Use a working Python 3.10+ executable, with its full path if needed. Default Codex home is `%USERPROFILE%\.codex` on Windows or `~/.codex` elsewhere. Setup preserves unrelated rules/handlers and backs up changed files.
 
-Review and trust the new hooks in your client's supported hook controls; Codex CLI uses `/hooks`. Start a new session or restart if needed. Writing configuration does not prove the client executed it. Without a supported client/runtime or hook trust, routing still works but automatic reminders do not. [Official hook documentation](https://learn.chatgpt.com/docs/hooks)
-
-Terra requires Codex CLI **0.159.0 or newer**. Model access still depends on your plan, client, workspace and rollout; verify the actual picker rather than silently selecting a different model. [Codex model availability](https://learn.chatgpt.com/docs/models)
+Review and trust hooks in the supported client controls; Codex CLI uses `/hooks`. A restart/new session may be needed. Written config does not prove desktop execution. Without hook support/trust, normal routing works but automatic reminders do not. [Official hooks](https://learn.chatgpt.com/docs/hooks)
 
 ## Step 2 — Use it
 
-Once installation and global setup are complete, **type tasks normally**. No prefix is needed for each message or conversation. Mentioning `$model-router` once is not a permanent switch; the setup above is what makes routing global.
+After installation and global setup, **type normally without a prefix on every message or conversation**. Mentioning a skill once is not a permanent switch; the global setup enables this behavior.
 
 1. Describe your task.
-2. Read the recommended model and reasoning effort.
+2. Read the model and reasoning recommendation.
 3. Select that combination in Codex.
-4. Send `go` as a standalone message. Codex continues the original task.
+4. Send `go` as a standalone message.
 
-The normal recommendation has three lines:
+Example for the Plus strategy:
 
 ```text
-Model: GPT-6.1 Terra; reasoning effort: Medium
-Reason: The supplied source and clear checks make this a bounded writing task.
+Model: GPT-6.1 Sol; reasoning effort: Medium
+Reason: This multi-step change can stay on the proven value baseline.
 Action: Choose the model and reasoning effort in the model picker, then send "go".
 ```
 
-Use `$model-router-20` or `$model-router`, matching your installed profile, only when you want to force a routing-only response. `go ahead` or a sentence containing `go` is not the confirmation token. A follow-up inherits the unresolved task's full scope; the router must not keep recommending Luna or Terra merely because a previous task used it.
+Use `$model-router-20` or `$model-router`, matching the install, only to force routing-only output. `go ahead` is not the confirmation token. Follow-ups inherit the whole unresolved task; do not keep Luna/Terra merely because the last task used it.
 
-## Which model should appear?
+## Models and effort
 
-| Task | Base model | Typical starting effort |
+| Work | Candidate | Typical start |
 | --- | --- | --- |
-| Mechanical extraction, a specified table or exact text/CSS replacement | GPT-6 Luna | Low or Medium |
-| Draft from supplied facts; interpret charts/screens; a defined app task; a scoped known-cause fix with regression checks | GPT-6.1 Terra | Medium; Low for limited judgment |
-| Dense but still bounded visual detail or interpretation | GPT-6.1 Terra | High |
-| Broader production work, multi-source synthesis, or a task not meeting the bounded Terra conditions | GPT-6.1 Sol | Medium |
-| Coupled features, unknown/repeated bugs, lifecycle, permissions or uncertain diagnosis | GPT-6.1 Sol | High |
-| Exceptional single-domain depth | GPT-6.1 Sol | XHigh |
-| Demanding coordination, long dependencies or costly hidden failures meeting the Astra gate | GPT-6 Astra | Low/Medium; High for weak validation or high stakes |
+| Mechanical extraction or an exact transformation | GPT-6 Luna | Low/Medium |
+| Bounded source-grounded writing, charts/screens, defined app flow or scoped known-cause fix with concrete checks | GPT-6.1 Terra | Medium; Low for modest judgment |
+| Dense but bounded visual detail | GPT-6.1 Terra | High |
+| Everyday multi-step work, synthesis and code changes beyond Terra's gate | Value-Sol: 6.1 or 6.2 | Medium; Low for explicit modest work |
+| Coupled features, ambiguity, unknown/repeated bugs or tracing a cause across systems | Value-Sol: 6.1 or 6.2 | High |
+| Exceptional single-domain depth or interacting causes | Value-Sol: 6.1 or 6.2 | XHigh |
+| Genuinely demanding integration/coordination or costly hidden failures | GPT-6.2 Astra | Low/Medium; High for weak validation/high stakes |
 
-These effort starting points are our routing policy, not measured model equivalences. Terra is not the default for ambiguous projects, coupled state/data-flow changes, repeated failures or costly hard-to-detect errors. Do not keep such work on Terra merely by raising effort to Max.
+These are project starting points, not official defaults or measured equivalences. Luna needs one narrow explicit outcome, no investigation/design or coupled changes, and cheap direct checks. Terra excludes repeated unknown bugs, coupled lifecycle/role/permission/data-flow changes, conflicting evidence and costly hidden failures. A screenshot as step one does not make the whole task a Terra task.
 
-Luna still needs one narrow explicit outcome, no investigation/design or coupled changes, and cheap direct verification. Astra needs at least two genuine complexity signals plus demanding coordination, long-context difficulty or costly hidden failures; ordinary delivery or multiple files alone are insufficient. The US$20 mapping above is applied once, after this assessment.
+Astra needs two genuine complexity signals plus demanding coordination, long dependencies or costly hidden failures. Routine delivery or multiple files alone is insufficient; no failed Sol run is required for an already demanding task.
 
-The reviewed local Codex catalog lists Low through Max on all four models and Ultra on Terra, Sol and Astra. Options vary. Terra's API supports None, but this local Codex catalog does not expose it: **API support is not proof of a picker option**. Ultra is client-specific, and availability does not authorize delegation. Speed settings remain untouched.
+### Subscription strategies
 
-## Updating an existing installation
+- **ChatGPT Plus:** preserve a proven GPT-6.1 Sol baseline. Use 6.2 Sol for explicit choice, a concrete need or credible same-input/effective-effort evidence of lower total usage/rework. Do not claim 6.1 is always cheaper.
+- **ChatGPT Pro:** 6.2 Sol is a general starting candidate; retain 6.1 for preference, proven value or a better context/billing tradeoff. Extra allowance is not a reason to always use Astra.
+- **Plus conservation mapping, once:** a base Astra Low/Medium route becomes selected value-Sol XHigh, normally GPT-6.1 Sol; 6.2 Sol is used only when justified above. Astra High/XHigh/Max/Ultra becomes GPT-6.2 Astra Low. Do not remap that result or change Luna/Terra/Sol base routes. Reduced effort is not equivalent quality; explicit supported user requirements take precedence.
+- **Pro:** no Plus conservation mapping. Preserve the base route.
 
-On v1.2.1 or later, send `check router update` to check immediately, or `update router` to authorize a same-profile upgrade. An update command does not execute a task waiting for confirmation.
+The dated [pricing and value policy](references/pricing-policy.md) contains the credit-rate table and billing distinctions. Compare real output quality, effort, context/caching, time to a usable result, usage and repair work before claiming savings.
 
-For an old install, an unavailable updater or a manual bootstrap, paste:
+### Availability and context
 
-```text
-Update my installed Codex Model Router to v1.3.0 from alanliuc-a11y/codex-model-router-gpt-6-1. Preserve my profile: profiles/20-usd for model-router-20, or . for model-router. Back up the existing skill and AGENTS.md/hooks.json outside skill discovery before using the Skill Installer, which does not overwrite existing folders. Install the same profile, run its global-routing script and verify version.json/file hashes. Preserve other rules and hooks, and keep only one active router. Preserve whether reminders were enabled; reconfigure them with scripts/router-update.py enable-hooks only if previously enabled or I request them. Explain any required trust review without bypassing it. Restore the old folder and configuration if setup fails.
-```
+The reviewed local catalog lists Low through Max on all five and Ultra except Luna; it does not prove a user's picker. None/Minimal are not reviewed Codex choices even if an API supports them. Ultra may delegate, so availability is not authorization. Speed settings stay unchanged.
 
-When a newer stable release is verified, the recommendation can add one fourth line:
+Codex documents default context of 272,000 tokens for 6.2 Astra and 500,000 for 6.2 Sol, separate from model/API capacities. Long input alone does not justify Astra; check fit and billing without changing settings or silently dropping sources. Terra's documented CLI minimum remains 0.159.0; do not assume 6.2 access from that minimum. [Official model/context guidance](https://learn.chatgpt.com/docs/models), [6.2 effort guidance](https://learn.chatgpt.com/guides/prompting-gpt-6-2-astra)
+
+## Updates — only when you ask
+
+Publishing v1.4.0 on GitHub **does not upgrade your local installation**. Keep the old version to test the process. Publication/validation runs use isolated test homes, not the active skill, AGENTS.md, hooks or client settings.
+
+On v1.2.1 or later, send `check router update` to check only, or `update router` to authorize a same-strategy upgrade. Neither executes a task waiting for confirmation. A verified newer release can add one fourth routing line:
 
 > Update: Model Router <version> is available. Send "update router" to update.
 
-The foreground hook reads cache only. The asynchronous refresher checks at most once per 24 hours, including failed attempts; explicit manual checks can bypass the cache. Anonymous API rate limits fall back to GitHub's canonical latest-release link without credentials. The first notice can arrive on a later task. Offline checks do not block routing; an unavailable check is not proof you are current.
+Checks read cache in the foreground and refresh asynchronously at most once per 24 hours, including failures. Manual checks may bypass the cache. The first notice may appear on a later task. API rate limits use GitHub's canonical latest-release fallback without credentials. Only a stable Release, not a branch commit, triggers updates.
 
-Only a newer stable **GitHub Release** triggers reminders, not a branch commit. No prompts, chat content or credentials are sent to GitHub; normal network metadata remains visible. Updates stage and verify the active profile, back up the full install/configuration, and roll back caught replacement failures. Backups are retained, and disabled reminders stay disabled. Hashes detect damage, not a compromised repository.
+For an unavailable updater or old install, paste:
 
-This is not an OS push notification or a one-click installation link. Modified package files and Git checkouts require a manual upgrade. A crash or failed restoration can need manual recovery. See [testing and recovery](docs/update-testing.md).
+```text
+Update my installed Codex Model Router to v1.4.0 from alanliuc-a11y/codex-model-router-gpt-6-1. Preserve my strategy and existing identifiers: profiles/20-usd/model-router-20 for ChatGPT Plus, root/model-router for ChatGPT Pro. Back up the skill and AGENTS.md/hooks.json outside skill discovery before reinstalling with the Skill Installer, which does not overwrite existing folders. Run global setup and verify version.json/file hashes. Preserve unrelated rules, hooks and whether reminders were enabled. Enable reminders only if previously enabled or I request them. Explain trust review without bypassing it. Keep one active router and restore the original install/config if setup fails.
+```
 
-Disable reminders with `python scripts/router-update.py disable-hooks`. Disable routing separately with the global script's `-Disable` or `--disable`; use `-Preview` or `--preview` to preview routing changes. Disable both before uninstalling.
+Updates stage and verify the selected package, retain complete backups and roll back caught replacement failures. Hashes detect damage, not a compromised repository. Crashes or failed restoration may require manual recovery. Customized package files/Git checkouts require manual upgrades. [Testing and recovery](docs/update-testing.md)
 
-## Authentic workflow screenshots
+No prompts or credentials are sent to GitHub, but public requests expose normal network metadata. Reminders are not OS push notifications or one-click installers. No notice means no verified newer release, not proof of a successful check.
 
-These older screenshots show the interaction, **not current model choices**. They have not been relabeled as Terra screenshots.
+Disable reminders with `python scripts/router-update.py disable-hooks`; disable routing separately with the global script's `-Disable`/`--disable`. Use `-Preview`/`--preview` to preview routing changes. Disable both before uninstalling.
+
+## Historical workflow screenshots
+
+These authentic older captures show selection and confirmation, not current model choices. They were not relabeled as 6.2 captures.
 
 ![Historical Luna selection](docs/screenshots/en-01-switch-luna-light.png)
-![Historical confirmation step](docs/screenshots/en-02-confirm-go.png)
+![Historical confirmation](docs/screenshots/en-02-confirm-go.png)
 ![Historical Sol confirmation](docs/screenshots/en-03-sol-confirm-go.png)
 ![Historical Astra selection](docs/screenshots/en-04-astra-switch.png)
 ![Historical Astra confirmation](docs/screenshots/en-05-astra-confirm-go.png)
 
-## Does it save 60% of tokens?
+## Validation and contributing
 
-We do not claim a fixed percentage. Compare representative tasks using the same sources, inputs and effort; then vary effort separately. Record correctness, total usage, time to a usable result and rework. A smaller model is only more efficient when it still meets the acceptance criteria.
+No fixed saving percentage or older benchmark relabeling. Updater/package tests do not prove model-routing quality. Use [routing acceptance cases](docs/routing-cases.md) on real tasks.
 
-API token prices do not measure Codex subscription allowance. Old GPT-6 Sol benchmark scores are not GPT-6.1 Terra or Sol scores, and this release does not claim a comparable AutomationBench effort ranking. [Official comparison guidance](https://learn.chatgpt.com/docs/model-selection)
+Run `python -m unittest discover -s tests -v`. The Skill Creator's `quick_validate.py <skill-folder>` checks structure. Release packaging uses `scripts/build-manifests.py`. Both strategies bundle `references/pricing-policy.md` and `references/updating.md`.
 
-## Project files and contributing
+See [changelog](CHANGELOG.md), [contribution guide](CONTRIBUTING.md), [update acceptance](docs/update-testing.md) and the [MIT license](LICENSE).
 
-- `SKILL.md`, `GLOBAL-ROUTING.md`, `agents/openai.yaml`: routing instructions, global fallback and UI metadata.
-- `profiles/20-usd/`: independently installable US$20 profile.
-- `scripts/router-update.py`, `version.json`, `references/updating.md`: reminders, package verification and explicit upgrades.
-- `scripts/build-manifests.py`, `tests/test_updates.py`: release packaging and offline updater tests.
-- [Routing acceptance cases](docs/routing-cases.md), [update acceptance tests](docs/update-testing.md), [changelog](CHANGELOG.md) and [contribution guide](CONTRIBUTING.md).
-
-Run `python -m unittest discover -s tests -v` for offline integration checks. The Skill Creator's `quick_validate.py <skill-folder>` checks skill structure, not routing quality. Test actual recommendations on representative tasks before relying on them. Code and these skills are [MIT licensed](LICENSE).
-
-Search terms: save Codex tokens · reduce token usage · Codex model routing · GPT-6.1 Terra · GPT-6.1 Sol · GPT-6 Astra · GPT-6 Luna · reasoning effort · skill update reminders.
+Search terms: save Codex tokens · GPT-6.2 Sol · GPT-6.2 Astra · GPT-6.1 Sol value · ChatGPT Plus · ChatGPT Pro · model routing · reasoning effort · update reminders.

@@ -6,7 +6,7 @@ The repository includes automated offline integration tests for both package pro
 
 ## Setup
 
-1. Follow the [README](../README.md) to install one v1.3.0 profile. Versions predating update reminders need a one-time bootstrap; v1.2.1 users can use the existing updater.
+1. Follow the [README](../README.md) to install one v1.4.0 profile. Versions predating update reminders need a one-time bootstrap; v1.2.1 users can use the existing updater.
 2. Use an available Python 3.10+ executable. From the installed skill folder, run the global-routing script, then `python scripts/router-update.py enable-hooks` (use `python3` on macOS/Linux).
 3. Review and trust both new hook handlers in your client's supported hook controls. In Codex CLI, use `/hooks`. Restart or open a new session if configuration is not reloaded. If your desktop client lacks that interface/support, keep ordinary routing and use manual checks; do not assume configuration means execution.
 4. Automatic checks run on user prompts, not while Codex is closed. The foreground handler only reads cache; the async handler refreshes it at most once per 24 hours, including failed attempts. Explicit checks bypass the cache. The first check may not affect the current response. [Official hook lifecycle](https://learn.chatgpt.com/docs/hooks)
@@ -42,3 +42,7 @@ The updater retains a transaction folder under `<CODEX_HOME>/skill-backups/route
 For manual recovery, stop updater activity, preserve any new work, and ask Codex to restore only that transaction's previous profile and configuration files. Do not delete a broad skills directory or unrelated rules. Review hooks afterward. Backups are not automatically deleted.
 
 The updater refuses modified package files and Git checkouts, rather than discarding customizations. An ordinary manual upgrade can preserve those changes with your approval. If the captured Python executable moves, re-run hook setup with a working runtime. Disable routing separately with its global-routing script; disable both routing and reminders before uninstalling.
+
+## Publication is not local installation
+
+A GitHub release request leaves the maintainer's real local skill and config untouched. Test installations/upgrades in an isolated directory, not the active Codex home. Wait for a separate explicit local-upgrade request before updating it; do not fabricate its cache or bypass trust. See [v1.4.0 routing acceptance](routing-cases.md).

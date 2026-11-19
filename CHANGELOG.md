@@ -1,6 +1,17 @@
 # Changelog
 
-Current package: v1.3.0; managed catalog: GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol and GPT-6 Astra. Older entries below are historical.
+Current package: v1.4.0; cost-aware candidates: GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol, GPT-6.2 Sol and GPT-6.2 Astra. Older entries below are historical.
+
+## v1.4.0 — 2026-11-19
+
+- Added GPT-6.2 Sol/Astra without retiring the proven GPT-6.1 Sol value candidate; Luna and Terra keep their verified versions.
+- Replaced price-band installation labels with official ChatGPT Plus / ChatGPT Pro subscription names. Historical paths and skill IDs remain compatible.
+- Plus retains a proven 6.1 Sol baseline; 6.2 stays available for explicit choice, concrete need or credible better total value. Pro considers 6.2 first without discarding 6.1 preferences or evidence.
+- Added dated official credit/allowance guidance, equal Sol baseline-rate comparison and the 6.1 subscription long-context exemption; separated subscription usage, credits and API bills.
+- Updated conservation mapping to the selected value-Sol and Astra 6.2, applied once with explicit quality tradeoffs; no fixed savings claim.
+- Distinguished Codex context defaults from model/API capacities, preserved effort-comparison controls and prohibited invented 6.2 Luna/Terra.
+- Updated both skill/global contracts, UI metadata, bilingual installation/use/upgrade/ZIP guidance, manual cases and packaged pricing resources.
+- Publishing/validation no longer implies a local upgrade: real installed skills, rules, hooks and settings stay unchanged until a separate explicit request.
 
 ## v1.3.0 — 2026-10-28
 

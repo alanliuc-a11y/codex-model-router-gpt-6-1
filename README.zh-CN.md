@@ -1,55 +1,48 @@
-# GPT-6.1 Terra + Sol Codex 模型路由器：节省令牌，选对模型和推理强度
+# Codex 模型路由器：支持 GPT-6.2，保留 GPT-6.1 Sol 的性价比选择
 
 [英文说明](README.md) | **中文说明**
 
 [![许可证：MIT](https://img.shields.io/badge/License-MIT-7c3aed.svg)](LICENSE) [![最新版本](https://img.shields.io/github/v/release/alanliuc-a11y/codex-model-router-gpt-6-1?display_name=tag&color=06b6d4)](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/releases)
 
-模型路由器会在任务开始前推荐模型和推理强度。你自己选好推荐组合，再输入「执行」继续。它不会暗中切换模型，不改速度设置，也不保证固定的令牌节省比例。
+任务开始前，先推荐够用的模型和推理强度。你自己选好组合，再输入「执行」继续。不会暗中换模型，不改速度，也不保证固定的令牌节省比例。
 
-## 1.3.0 新增 GPT-6.1 Terra
+## 1.4.0：支持新版，但不为追新牺牲性价比
 
-现在支持 **GPT-6 Luna、GPT-6.1 Terra、GPT-6.1 Sol 和 GPT-6 Astra**。
+候选模型为 **GPT-6 Luna、GPT-6.1 Terra、GPT-6.1 Sol、GPT-6.2 Sol 和 GPT-6.2 Astra**。6.1 Sol 仍是正常的性价比候选，不再因为新版发布就被降为旧版兜底。
 
-Terra 用于有明确资料和验收标准的写作、图表与界面解读、目标明确的软件操作，以及原因已知、范围有限且可以回归检查的代码修复。复杂项目仍用 Sol；不能因为第一步是看截图，就把整个复杂任务交给 Terra。
+按质量、可用模型、上下文、推理消耗及返工综合选择。**ChatGPT Plus** 策略保留已经验证好用的 6.1 Sol 基线；**ChatGPT Pro** 可以先评估 6.2 Sol，但仍保留 6.1 的经验优势。这是项目策略，不是官方路由算法。
 
-依据：[Terra 官方规格](https://developers.openai.com/api/docs/models/gpt-6.1-terra)、[官方模型选择说明](https://learn.chatgpt.com/docs/model-selection)，核对日期为 2026 年 10 月 28 日。
+官方基准积分单价中，6.1 Sol 与 6.2 Sol 相同，不能直接说谁完成整个任务一定更便宜。官方还明确说明：6.1 Sol 的订阅用量没有长上下文附加费。订阅额度、额外积分和接口账单要分开判断。[官方计费资料](https://learn.chatgpt.com/docs/pricing)，核对日期为 2026 年 11 月 19 日。
 
-仓库地址和技能名称保持不变，避免旧安装找不到更新。**1.3.0 是工具版本，GPT-6.1 是模型系列。**
+## 第一步：按官方订阅名称安装
 
-## 第一步：安装
+根据自己的实际订阅选择，不再用月费金额分档，也不从模型列表猜订阅。只安装一个策略。
 
-### 最方便：让 Codex 帮你安装
+### ChatGPT Plus
 
-只选一个档位，复制对应的整段话发送给 Codex。单独发送仓库网址，不等于要求安装。
-
-**20 美金档**
+把下面整段话发送给 Codex：
 
 ```text
-请使用技能安装器从 GitHub 仓库 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.3.0，路径使用 profiles/20-usd，名称使用 model-router-20。运行已安装技能的全局路由脚本，再用本机已有的运行环境运行 scripts/router-update.py enable-hooks，配置更新提醒。保留我的其他 AGENTS.md 规则及检查脚本。告诉我如何审核并信任新配置，不要绕过审核；缺少运行环境时先问我，不要擅自安装。分别说明哪些步骤已验证。
+请使用技能安装器从 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.4.0，路径使用 profiles/20-usd，名称使用 model-router-20，采用 ChatGPT Plus 性价比优先策略。运行已安装技能的全局路由脚本，再用本机已有的运行环境运行 scripts/router-update.py enable-hooks。保留其他 AGENTS.md 规则及检查脚本，告诉我如何审核并信任新配置，不要绕过审核。缺少运行环境时先问我，并分别说明哪些步骤已验证。
 ```
 
-**高额度档，例如五倍或二十倍额度**
+### ChatGPT Pro
 
 ```text
-请使用技能安装器从 GitHub 仓库 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.3.0，路径使用 .，名称使用 model-router。运行已安装技能的全局路由脚本，再用本机已有的运行环境运行 scripts/router-update.py enable-hooks，配置更新提醒。保留我的其他 AGENTS.md 规则及检查脚本。告诉我如何审核并信任新配置，不要绕过审核；缺少运行环境时先问我，不要擅自安装。分别说明哪些步骤已验证。
+请使用技能安装器从 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.4.0，路径使用 .，名称使用 model-router，采用 ChatGPT Pro 策略。运行已安装技能的全局路由脚本，再用本机已有的运行环境运行 scripts/router-update.py enable-hooks。保留其他 AGENTS.md 规则及检查脚本，告诉我如何审核并信任新配置，不要绕过审核。缺少运行环境时先问我，并分别说明哪些步骤已验证。
 ```
 
-这里的档位是本项目的额度使用策略，不是官方订阅名称，也不是额度保证。两个档位使用同一套四模型规则；20 美金档在基础判断完成后，额外转换一次：
+其他订阅、工作区席位或接口密钥使用方式，应先核对真实的模型权限及用量限制，不能一律按 Pro 处理，也不能保证五个模型都可用。Pro 内部的额度也并不完全相同。
 
-| 原本的 Astra 推荐 | 20 美金档最终推荐 |
-| --- | --- |
-| Astra 轻或中 | GPT-6.1 Sol 极高 |
-| Astra 高、极高、最大或超强 | GPT-6 Astra 轻 |
-
-Luna、Terra 和 Sol 的基础推荐不变。转换后的 Astra 轻不会再转一次，也不会把 Astra 直接映射到 Terra。这是额度偏好，不代表能力相等。高额度档保留原始推荐。
+`model-router-20` 与 `profiles/20-usd` 仅保留为历史兼容标识，**不是给用户选择的订阅分档名称**。仓库网址里的 `gpt-6-1` 同样为兼容旧更新器保留，不限制支持的模型版本。
 
 ### 手动下载安装
 
-下载 [1.3.0 压缩包](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.3.0.zip)。20 美金档把 `profiles/20-usd` 复制到 `<CODEX_HOME>/skills/model-router-20`；高额度档把根目录技能文件复制到 `<CODEX_HOME>/skills/model-router`。
+下载 [1.4.0 压缩包](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.4.0.zip)。Plus 使用 `profiles/20-usd`，安装到 `<CODEX_HOME>/skills/model-router-20`；Pro 使用根目录技能文件，安装到 `<CODEX_HOME>/skills/model-router`。
 
-`SKILL.md`、`GLOBAL-ROUTING.md`、`version.json`、`agents/`、`references/` 和 `scripts/` 必须放在一起。已有安装先备份到技能目录以外；只保留一个档位。
+`SKILL.md`、`GLOBAL-ROUTING.md`、`version.json`、`agents/`、`references/` 和 `scripts/` 必须放在一起。已有安装先备份到技能目录外，只保留一个策略。
 
-默认配置目录：Windows 为 `%USERPROFILE%\.codex`，其他系统为 `~/.codex`。在安装好的技能目录运行：
+在已安装的技能目录运行：
 
 **Windows 命令**
 
@@ -65,94 +58,97 @@ sh ./scripts/global-routing.sh
 python3 ./scripts/router-update.py enable-hooks
 ```
 
-需要可运行的 Python 3.10 或更高版本；必要时把程序名换成完整路径。第一条命令只更新用户级 `AGENTS.md` 的受管理区块，保留其他规则并备份。第二条命令添加更新提醒，保留其他检查脚本。
+需要可用的 Python 3.10 或更高版本，必要时使用程序完整路径。默认配置目录为 Windows 的 `%USERPROFILE%\.codex` 或其他系统的 `~/.codex`。配置保留其他规则及检查脚本，并备份改动。
 
-首次配置后，请在客户端支持的脚本审核入口检查并信任新配置；命令行客户端使用 `/hooks`。必要时新建会话或重启。**写入配置成功，不等于客户端已经运行成功。** 客户端、运行环境或信任条件不满足时，普通路由仍可使用，只是没有自动提醒。[官方脚本说明](https://learn.chatgpt.com/docs/hooks)
+首次需在客户端支持的入口审核并信任脚本，命令行使用 `/hooks`；必要时新建会话或重启。写入配置不等于桌面客户端已经运行。条件不满足时，普通路由仍能使用，只是没有自动提醒。[官方脚本机制](https://learn.chatgpt.com/docs/hooks)
 
-Terra 需要 Codex 命令行版本 **0.159.0 或更高**。实际可用性仍取决于账号、客户端、工作区及发布进度；推荐模型不存在时应说明差异，不可偷偷替换。[官方模型可用性](https://learn.chatgpt.com/docs/models)
+## 第二步：正常输入，不需要每句话加前缀
 
-## 第二步：使用
+全局设置完成后，每句话、每个新对话都像平时一样输入。不是第一次写一次前缀就永久启用，真正起作用的是上面的全局配置。
 
-安装并完成全局设置后，**每次像平时一样直接输入任务，不需要在每句话或每个新对话前加前缀。** 不是第一次写一次前缀就永久启用，真正起作用的是上面的全局设置。
+1. 输入任务。
+2. 查看模型和推理强度。
+3. 在 Codex 中选好推荐组合。
+4. 单独发送「执行」，继续原任务。
 
-1. 输入你的任务。
-2. 查看模型和推理强度建议。
-3. 在 Codex 里选好推荐组合。
-4. 单独发送「执行」，继续刚才的任务。
-
-普通推荐只有三行，例如：
+Plus 策略示例：
 
 ```text
-模型：GPT-6.1 Terra；推理强度：中
-原因：已有明确资料和核对标准，适合范围有限的写作任务。
+模型：GPT-6.1 Sol；推理强度：中
+原因：任务需要多步修改，先沿用已验证的性价比方案。
 操作：在模型选择器中选择模型和推理强度，然后发送“执行”。
 ```
 
-只有想强制“只推荐、不执行”时，才显式使用与你的档位对应的 `$model-router-20` 或 `$model-router`。继续处理复杂问题时，会按未完成的完整任务判断，不应因上一项任务用了 Luna 或 Terra 就一直沿用。
+只有强制要求“只推荐、不执行”时，才加对应的 `$model-router-20` 或 `$model-router`。继续复杂任务时，不能因为上一项任务用了 Luna 或 Terra 就一直沿用。
 
-## 什么时候推荐哪个模型？
+## 什么时候用哪个模型？
 
-| 任务 | 基础模型 | 常用推理起点 |
+| 工作 | 候选 | 常用起点 |
 | --- | --- | --- |
-| 按明确规则提取、整理表格或替换指定文字与样式 | GPT-6 Luna | 轻或中 |
-| 按给定事实写作、解读图表与界面、明确的软件操作、可回归检查的小范围已知修复 | GPT-6.1 Terra | 中；判断很少时用轻 |
-| 细节密集、但仍有明确边界的图表或视觉解读 | GPT-6.1 Terra | 高 |
-| 不满足 Terra 边界的日常开发、资料整合与分析 | GPT-6.1 Sol | 中 |
-| 功能联动、未知或反复失败的缺陷、状态或权限变化 | GPT-6.1 Sol | 高 |
-| 单一领域特别困难的问题 | GPT-6.1 Sol | 极高 |
-| 满足条件的困难整合、长链条依赖或隐蔽错误代价高的任务 | GPT-6 Astra | 轻或中；高风险或难验证时用高 |
+| 规则明确的机械提取、表格整理或精确替换 | GPT-6 Luna | 轻或中 |
+| 范围明确的资料写作、图表与界面解读、明确的软件操作或可检查的已知修复 | GPT-6.1 Terra | 中；判断少时用轻 |
+| 细节密集但边界明确的视觉工作 | GPT-6.1 Terra | 高 |
+| 多步开发、资料整合及超出 Terra 边界的工作 | 6.1 或 6.2 Sol | 中；明确且容易验证时可用轻 |
+| 功能联动、未知或反复失败的缺陷、跨系统追查原因 | 6.1 或 6.2 Sol | 高 |
+| 特别困难的单一领域或相互影响的多种原因 | 6.1 或 6.2 Sol | 极高 |
+| 真正困难的整合、协调或隐蔽错误代价高的任务 | GPT-6.2 Astra | 轻或中；高风险、难验证时用高 |
 
-这些起点是本项目的路由策略，不是官方能力等价表。Terra 不负责需求不清、状态和数据联动、反复失败或隐蔽错误代价高的复杂项目；不能仅靠把推理调到最大，就把不合适的任务留在 Terra。
+这些起点是项目策略，不是官方默认值或能力等价表。Luna 要求任务单一明确、不需要调查设计、容易验证。Terra 不负责反复失败、状态或权限联动、证据冲突及隐蔽错误代价高的工作；第一步看截图不代表整个复杂任务适合 Terra。
 
-Luna 仍要求单一、规则明确、不需要调查或设计、容易直接核对。Astra 需要至少两个真实复杂信号，同时存在协调困难、长上下文依赖或隐蔽错误风险；普通交付或多文件本身不够。20 美金档只在基础判断之后转换一次。
+Astra 需要至少两个真实复杂信号，同时存在困难协调、长链条依赖或隐蔽错误风险。普通多文件或交付步骤本身不够；真正困难的任务不必先让 Sol 失败一次。
 
-本次核对的本机目录列出了四个模型的轻至最大档，Terra、Sol 和 Astra 另有超强档；以用户实际选择器为准。Terra 的接口支持无推理，但本机 Codex 目录没有这个选项，**不能把接口参数当成客户端可选项**。超强属于客户端能力，可用不等于允许委派任务。速度设置不动。
+### 两个订阅策略的区别
 
-## 已安装用户怎么更新？
+- **ChatGPT Plus：**保留已验证的 GPT-6.1 Sol 基线。明确要求、具体能力需要，或同输入同推理强度下有总用量或返工更少的依据时，再选 6.2 Sol；不能声称 6.1 永远更便宜。
+- **ChatGPT Pro：**先评估 6.2 Sol，但用户偏好、验证过的工作流或上下文计费更合适时仍保留 6.1。额度更多不代表普通任务都要用 Astra。
+- **Plus 节约转换只执行一次：**基础推荐为 Astra 轻或中时，改为本次选定的性价比 Sol 极高，通常是 6.1 Sol；有上述理由时可选 6.2 Sol。Astra 高及以上改为 6.2 Astra 轻。不会把结果再转换一次，也不转换 Luna、Terra 或 Sol 的基础推荐。降低推理不代表质量等价，用户明确且可用的要求优先。
+- **Pro：**不执行上述 Plus 转换，保留基础推荐。
 
-使用 1.2.1 或更新版本时，单独发送「检查路由器更新」可立即检查；单独发送「更新路由器」才会升级同一档位，不会执行正在等待确认的任务。
+[价格与性价比策略](docs/pricing.zh-CN.md)列出有日期的积分参考及计费区别。比较正确性、实际用量、推理、上下文缓存、得到可用结果的时间及返工，不只比较单价或版本号。
 
-旧版、更新器不可用或需要手动重新安装时，发送：
+### 可用选项与上下文
 
-```text
-请把我已安装的 Codex 模型路由器更新到 alanliuc-a11y/codex-model-router-gpt-6-1 的 v1.3.0。保留当前档位：model-router-20 使用 profiles/20-usd，model-router 使用根目录。先把旧技能及 AGENTS.md、hooks.json 备份到技能目录外，再使用技能安装器安装同一档位，因为安装器不会覆盖旧目录。运行全局路由脚本并核对版本清单及文件校验值。保留其他规则和检查脚本，只保留一个生效档位。保留更新提醒原来的开关状态；原本启用或我明确要求时，才运行 scripts/router-update.py enable-hooks。说明必要的信任审核，不要绕过审核。安装或配置失败时恢复旧目录及配置。
-```
+本次核对的本机目录中，五个模型都有轻至最大，除 Luna 外另有超强；仍以实际选择器为准。不能把接口支持当成客户端可选项，也不能推荐本机未列出的无推理选项。超强可能委派任务，可用不等于已经得到授权。速度不动。
 
-确认有新版时，推荐下方最多增加第四行：
+官方列出的 Codex 默认上下文：6.2 Astra 二十七万二千个令牌，6.2 Sol 五十万个令牌，不等于模型或接口上限。材料长不自动代表应该用 Astra；应检查容量和计费，不悄悄丢资料或改设置。Terra 已核实的命令行最低版本仍为 0.159.0，不能拿它推断 6.2 的最低版本或账号权限。[模型与上下文](https://learn.chatgpt.com/docs/models)、[6.2 推理建议](https://learn.chatgpt.com/guides/prompting-gpt-6-2-astra)
+
+## 更新由你决定
+
+**发布 GitHub 新版不会自动升级维护者本机。** 需要测试完整流程时保留旧版；发布与验收只使用隔离目录，不修改真实技能、全局规则、提醒或客户端设置。
+
+使用 1.2.1 或更新版本时，单独输入「检查路由器更新」只检查；输入「更新路由器」才升级同一策略，不执行待确认任务。核实有新版时，推荐可增加第四行：
 
 > 更新：模型路由器已有新版（版本号），输入“更新路由器”即可更新。
 
-前台只读缓存，后台每二十四小时最多检查一次，失败也会缓存；手动检查可立即刷新。匿名接口限流时使用官方最新发布链接，不读取凭据。首次提醒可能出现在下一项任务；检查不可用不能说“已经是最新版”。
+前台只读缓存，后台每二十四小时最多检查一次，失败也会缓存；手动检查可刷新。首次提醒可能出现在下次任务。接口限流时通过官方最新发布链接检查，不读取凭据。只有正式发布版本触发提醒，普通提交不会。
 
-只有创建新的 GitHub 正式发布版本才会触发提醒，仅提交代码不会触发。检查不发送任务、聊天或密钥，但联网会透露通常的网络信息。更新会校验下载、备份完整旧技能及配置，安装中可捕获的失败会恢复旧版；备份保留，关闭的提醒不会被擅自重新打开。文件校验不是独立于仓库的安全签名。
+旧版或更新器不可用时，可发送：
 
-这不是系统推送，也不是点击链接就能安装。修改过技能文件或使用 Git 克隆安装的用户应手动升级；突然退出或恢复时写入失败可能需要人工处理。见[测试与恢复步骤](docs/update-testing.zh-CN.md)。
+```text
+请把本机 Codex 模型路由器更新到 alanliuc-a11y/codex-model-router-gpt-6-1 的 v1.4.0。保留策略和已有标识：Plus 使用 profiles/20-usd 与 model-router-20，Pro 使用根目录与 model-router。先把旧技能及 AGENTS.md、hooks.json 备份到技能目录外，再使用不会覆盖旧目录的技能安装器重装。运行全局配置并核对版本清单和文件校验值。保留其他规则、检查脚本及提醒原来的开关状态；原本开启或我另外要求时才启用提醒。说明信任审核，不绕过审核，只保留一个生效策略。失败时恢复原安装和配置。
+```
 
-关闭提醒：`python scripts/router-update.py disable-hooks`。关闭路由需另外使用全局脚本的 `-Disable` 或 `--disable`；预览使用 `-Preview` 或 `--preview`。完整卸载前分别关闭两者。
+更新会校验下载、保留完整备份并恢复可捕获的安装失败。文件校验不是独立安全签名；突然退出或恢复时无法写入，可能仍需人工处理。自定义过的技能文件或 Git 克隆目录应手动升级。[测试与恢复](docs/update-testing.zh-CN.md)
 
-## 真实操作截图
+不向 GitHub 发送任务或凭据，但联网会透露普通网络信息。提醒不是系统推送，也不是点击链接就能安装。没有提醒，不等于已经成功检查并确认最新。
 
-以下为旧版截图，仅展示“先切换、再确认”的步骤，不代表当前模型推荐；没有把旧截图改名冒充 Terra 截图。
+关闭提醒：`python scripts/router-update.py disable-hooks`。路由需另外用全局脚本的 `-Disable` 或 `--disable` 关闭；预览用 `-Preview` 或 `--preview`。完整卸载前分别关闭两者。
+
+## 历史流程截图
+
+这些真实旧图仅展示切换与确认，不代表当前模型建议，也没有改名冒充 6.2 截图。
 
 ![旧版 Luna 示例](docs/screenshots/zh-00-luna-light-example.png)
-![第一步：在选择器切换模型与推理强度](docs/screenshots/zh-01-switch-sol-high.png)
-![第二步：输入执行继续任务](docs/screenshots/zh-02-confirm-execute.png)
-![旧版 Astra 确认流程](docs/screenshots/zh-03-astra-confirm-execute.png)
+![选择模型和推理强度](docs/screenshots/zh-01-switch-sol-high.png)
+![输入执行继续](docs/screenshots/zh-02-confirm-execute.png)
+![旧版 Astra 确认](docs/screenshots/zh-03-astra-confirm-execute.png)
 
-## 能节省百分之六十的令牌吗？
+## 验证与贡献
 
-不能保证固定比例。请用同样的输入和推理强度比较有代表性的任务，再单独调整推理强度，记录正确性、总用量、得到可用结果的时间及返工。较小模型仍达到质量要求，才算真正提高效率。
+不承诺固定节省比例，不把旧模型成绩当作 6.2 成绩。更新器和打包测试不能证明模型推荐质量，请用[路由验收案例](docs/routing-cases.md)测试实际任务。
 
-接口价格不等于 Codex 订阅额度消耗。旧 GPT-6 Sol 榜单成绩不能算作 GPT-6.1 Terra 或 Sol 成绩，本次不编写可直接比较的榜单档位排名。[官方比较方法](https://learn.chatgpt.com/docs/model-selection)
+离线测试运行 `python -m unittest discover -s tests -v`；技能创建工具的 `quick_validate.py <技能目录>` 检查结构。发布清单由 `scripts/build-manifests.py` 生成。两个策略都附带价格及更新规则。
 
-## 仓库内容与贡献
+见[更新记录](CHANGELOG.md)、[贡献说明](CONTRIBUTING.md)、[更新验收](docs/update-testing.zh-CN.md)和 [MIT 许可证](LICENSE)。
 
-- `SKILL.md`、`GLOBAL-ROUTING.md`、`agents/openai.yaml`：技能规则、全局兜底及展示信息。
-- `profiles/20-usd/`：可独立安装的 20 美金档。
-- `scripts/router-update.py`、`version.json`、`references/updating.md`：更新提醒、校验及安全升级。
-- `scripts/build-manifests.py`、`tests/test_updates.py`：打包与离线测试。
-- [路由验收案例](docs/routing-cases.md)、[更新测试](docs/update-testing.zh-CN.md)、[更新记录](CHANGELOG.md)、[贡献说明](CONTRIBUTING.md)。
-
-离线测试运行 `python -m unittest discover -s tests -v`。技能创建工具的 `quick_validate.py <技能目录>` 检查结构，不证明每次模型推荐都最优；重要任务仍需实际验收。代码及技能采用 [MIT 许可证](LICENSE)。
-
-搜索关键词：节省令牌、节省 Codex 令牌、节省 token、降低 Codex 消耗、模型路由、GPT-6.1 Terra、GPT-6.1 Sol、GPT-6 Astra、GPT-6 Luna、推理强度、技能更新提醒。
+搜索关键词：节省 Codex 令牌、节省 token、GPT-6.2 Sol、GPT-6.2 Astra、GPT-6.1 Sol 性价比、ChatGPT Plus、ChatGPT Pro、模型路由、推理强度、更新提醒。

@@ -1,24 +1,21 @@
 # Contributing
 
-Thank you for helping improve GPT-6.1 Terra + Sol Codex Model Router (package v1.3.0).
+Codex Model Router v1.4.0 supports ChatGPT Plus / ChatGPT Pro project strategies with cost-aware candidates: GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol, GPT-6.2 Sol and GPT-6.2 Astra.
 
-The default catalog is GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol and GPT-6 Astra. Recheck official documentation and the client catalog before changing it; do not relabel older benchmark scores as a newer model's results. Installation changes must update fresh-install, ZIP-download and existing-install upgrade instructions in both languages.
+Keep model capability, effort, subscription allowance, purchased-credit rates and API billing separate. Refresh official model/pricing evidence before changing rates or entitlements. Do not retire 6.1 Sol just because a newer model launched; compare total quality, usage, context and rework.
 
-Useful contributions include:
+Use official subscription names for user choices, not dollar bands. Historical skill/directory IDs stay compatible. Other plans/seats need actual availability/usage checks, not an assumed Pro mapping. Keep existing user-supported choices and never claim equal quality or guaranteed savings from an effort downgrade.
 
-- a reproducible installation or global-routing issue;
-- a routing case where the recommendation was clearly too weak or too costly;
-- a documentation or translation correction;
-- a tested improvement that keeps the managed Codex catalog intact.
+Update both installable profiles, global fallbacks, UI metadata, bilingual fresh-install/use/upgrade/ZIP guidance and release notes together. Keep English/Chinese routing prompts separate. Historical screenshots/benchmarks/releases stay identified as history.
 
-Before opening an issue, check that the task began in a new Codex turn and include the Codex version, operating system, available model-picker options, task type, expected route, actual route, and any safe-to-share error output. Never include API keys, private prompts, customer data, or screenshots containing sensitive information.
+Shared resources are `references/updating.md` and `references/pricing-policy.md`; both copies and the updater scripts must match. Run `python scripts/build-manifests.py` after changing packaged files. The manifest hashes LF-normalized text, not itself, and is not an independent release signature. An older installed updater must be able to stage the newer manifest's resources.
 
-For pull requests, keep the change focused, explain the user-visible effect, and update both English and Chinese documentation when the workflow changes.
+Run `python -m unittest discover -s tests -v`, validate both skill structures, and check links/languages/available combinations. [Routing cases](docs/routing-cases.md) are manual behavior checks, not proof from updater tests. Check saving claims on representative tasks using the same effective effort first.
 
-This project recommends model and reasoning choices. It must not claim automatic model switching, fixed token savings, or access to a user's current picker selection.
+Publishing/validation never authorizes upgrading the maintainer's actual local skill or touching AGENTS.md, hooks or client settings. Use isolated test homes, verify backups/rollback/preserved unrelated config there, and wait for a separate explicit local-upgrade request. Never bypass hook trust.
 
-For updater changes, run `python -m unittest discover -s tests -v`; update both installable copies of `scripts/router-update.py` and `references/updating.md`, then run `python scripts/build-manifests.py`. The manifests hash LF-normalized package text, excluding the manifest itself. A release-version change must update the builder, both skill headers, bilingual fresh-install/ZIP/upgrade instructions, release notes and changelog. Never rewrite published tags. Create a new stable GitHub Release only after its tagged package passes verification; a branch push alone does not notify users.
+Keep the repository URL stable for installed updaters; refresh public titles, descriptions and topics instead. Do not rewrite published tags. Create a stable GitHub Release only after its tagged package passes checks; a branch commit alone does not trigger reminders.
 
-Test offline checks, authorization, language separation, both profiles, preserved unrelated config, broken downloads and rollback. Do not bypass hook trust in client acceptance tests. CI checks scripts and package integrity; it does not prove desktop hook execution or model-routing quality. Manual acceptance: [English](docs/update-testing.md), [Chinese](docs/update-testing.zh-CN.md).
+Report a reproducible task, OS/client version, safe model-picker information, installed strategy/version, expected/actual route and sanitized error output. Never include credentials, private prompts, customer data or sensitive screenshots. Model routing does not switch an already-running root model or reveal a hidden picker selection.
 
-Terra policy changes need whole-task cases for writing, visual interpretation, defined computer use and scoped known-cause fixes, plus exclusions for coupled states, repeated unknown bugs and costly hidden failures. Keep the Astra-only US$20 mappings unchanged. [Routing cases](docs/routing-cases.md) are manual acceptance prompts, not proof of empirical routing quality. Keep the repository URL stable for installed updaters; update public titles, topics and descriptions instead.
+Further guidance: [English update acceptance](docs/update-testing.md), [Chinese update acceptance](docs/update-testing.zh-CN.md), [Chinese price explanation](docs/pricing.zh-CN.md), [changelog](CHANGELOG.md).

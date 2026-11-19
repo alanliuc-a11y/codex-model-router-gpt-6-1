@@ -1,16 +1,17 @@
 {
   "schema": 1,
-  "version": "1.3.0",
+  "version": "1.4.0",
   "repository": "alanliuc-a11y/codex-model-router-gpt-6-1",
   "profile": "model-router-20",
   "source_path": "profiles/20-usd",
   "files": {
-    "SKILL.md": "64dcc67b373470a37d554b6ec25ecb4566791b8a1749e67926c02569f5d6dc33",
-    "GLOBAL-ROUTING.md": "cdc9e57ff292bb4ed426f3a371028d161203304ecf59e77ab2b3961090dc590b",
-    "agents/openai.yaml": "f3d78287e48f37ae922fc5df14113c877bc41f381af9bd93cca324b1021b3941",
+    "SKILL.md": "5fdf73193e125530d0526d9c75e423169b2d75259cc6bf5e43a532045c62c144",
+    "GLOBAL-ROUTING.md": "174c1058a29c48022287927d3cc0dfb34072548b53b76fff2803e4db81332d2f",
+    "agents/openai.yaml": "b78f550fc585cb269ad8a7dfcef7878c568ab2174f787a23526987f73e5f695a",
     "scripts/global-routing.ps1": "6fb48e1d082a617b8476905789fd289baf08dd6e434090c86bc4764d44638e3c",
     "scripts/global-routing.sh": "200929ac7c1fec2afd39021491c0b3d84c20f1bd55ce158a0ae896b1968ed090",
-    "scripts/router-update.py": "01b57bb4e26bd49a3819e0b9bbc6b5cdb6e6e1e8e16c95c356bec34befd84f0e",
-    "references/updating.md": "da347eb378ea956147b42b70689577677191dedfe48dda8ac828eaae91dd9472"
+    "scripts/router-update.py": "0a4f8814370d5b290af948f1a07eaaabd50f6c67c984d23050f4283ca2f489ab",
+    "references/updating.md": "e79ac3eb63a23a5dca32224e9b35fcdc8ef579027e69c445bb4165c8a52f91d3",
+    "references/pricing-policy.md": "30aad8d51e35bac986a67c44c0977d168a81ad68fe7d8d6362f3dfb27dc1d5f3"
   }
 }

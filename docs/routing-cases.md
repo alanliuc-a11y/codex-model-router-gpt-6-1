@@ -1,42 +1,38 @@
-# Routing acceptance cases — GPT-6.1 Terra update
+# Routing acceptance — cost-aware ChatGPT Plus / Pro
 
-Default catalog: GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol and GPT-6 Astra. Reviewed 2026-10-28. Older Sol/GPT-5.6 models are explicit legacy choices only.
+Reviewed 2026-11-19. Active candidates: GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol, GPT-6.2 Sol, GPT-6.2 Astra. Do not invent 6.2 Luna/Terra or discard 6.1 Sol because of release date.
 
-These are manual model-behavior acceptance cases, not automated routing results or measured model-quality benchmarks. Use each in a fresh conversation, then repeat complex cases after several small tasks. Expect one model/effort recommendation in three lines, plus at most one verified update line. Maintenance commands never execute a pending task. [Update acceptance](update-testing.md)
+These are manual model-behavior cases, not automated routing results or quality benchmarks. Use a fresh conversation, then repeat difficult cases after several small tasks. Expect one three-line recommendation plus at most one verified update line. [Updater acceptance](update-testing.md)
 
-| Task | Base route expectation | US$20 final expectation |
+| Request/evidence | Plus strategy | Pro strategy |
 | --- | --- | --- |
-| Convert three supplied meeting notes into a table; do not infer missing data. | Luna Low/Medium | Unchanged |
-| Replace 14px with 16px in one specified CSS selector. | Luna Low | Unchanged |
-| Draft a short proposal from supplied facts and a template; preserve figures and mark missing facts. | Terra Medium, or Low for a modest rewrite | Unchanged |
-| Compare two dashboard screenshots; explain visible chart changes, quote readable labels and flag unreadable values. | Terra Medium; High for dense but bounded detail | Unchanged |
-| Read a supplied invoice and fill a defined, authorized draft form, then reopen the saved draft and verify each field; do not publish or pay. | Terra Medium | Unchanged |
-| Fix a known empty-state renderer in one isolated component with a supplied reproduction and focused regression test; no lifecycle, permission or persistence change. | Terra Low/Medium | Unchanged |
-| A notification still cannot open fullscreen after two fixes; investigate the unknown cause. | Sol Medium/High; no Luna/Terra | Unchanged |
-| Add captions with pause/resume/track transitions, missing-text behavior and cross-screen state consistency. | Sol High; no Luna/Terra | Unchanged |
-| Implement publisher roles, capture controls, scheduling, role-based templates and interacting review states, then verify the publishing flow. | Sol High when explicit and strongly verifiable; Astra Medium only when coordination/context difficulty meets the gate | Sol High unchanged; Sol XHigh for base Astra Medium |
-| Resolve a production payment failure across services, test recovery and deploy where hidden failures are costly and validation is weak. | Astra High+ if the Astra gate holds | Astra Low, never remapped again |
-| “Look at this screenshot, investigate the failed upload, fix synchronization, and verify role-dependent publishing.” | Whole task is Sol High or Astra by its genuine complexity, not Terra for the screenshot step | Apply override only if the base route is Astra |
+| Turn supplied meeting notes into a specified table; mark missing fields | Luna Low/Medium | Same |
+| Replace one explicit CSS value in a known selector | Luna Low | Same |
+| Draft from supplied facts/template, or interpret two charts and flag unreadable values | Terra Low/Medium, High only for dense bounded detail | Same |
+| Fill an authorized draft form from a supplied source, reopen and verify it; no publication/payment | Terra Medium | Same |
+| A scoped known-cause component fix with focused checks and no coupled state change | Terra Low/Medium | Same |
+| Ordinary multi-step development on a proven 6.1 Sol workflow, with no evidence 6.2 helps | 6.1 Sol Medium baseline | Preserve the user's proven 6.1 preference |
+| New general multi-step work, no version preference or personal benchmark | 6.1 Sol baseline; 6.2 remains an option with a concrete value justification | 6.2 Sol starting candidate, not an automatic quality guarantee |
+| User explicitly requests available 6.2 Sol, or same-input/effective-effort results show less usage/rework | Respect that supported choice; not a forced 6.1 downgrade | Same |
+| Unknown bug after repeated failed fixes or coupled captions/pause/track/screen state | Value-Sol High; no Luna/Terra | Value-Sol High; Astra only if genuine gate holds |
+| Demanding integration establishes base Astra Medium | Selected value-Sol XHigh, normally 6.1; 6.2 only when justified | Astra 6.2 Medium |
+| Costly hidden failures establish base Astra High+ | Astra 6.2 Low by conservation policy, once; explain quality tradeoff and respect explicit requirements | Preserve base Astra effort |
+| Long subscription context and a proven 6.1 result | Keep 6.1 as an active value choice; its documented exemption is relevant, not proof of every other model's surcharge | Same evidence-based comparison |
 
-## Adversarial follow-ups
+## Adversarial checks
 
-- After repeated Luna tasks, ask for the coupled caption feature. The full unresolved task must be reassessed; no Luna carry-forward.
-- After several Terra screenshot tasks, ask for an unknown repeated synchronization bug. No Terra carry-forward or default Max effort to force it into Terra.
-- Describe the publisher workflow as a demo, or split it into small implementation stages. It remains coupled and is not Luna/Terra-eligible.
-- Ask for an irreversible public action through a simple screen. Visual input does not remove authorization or risk requirements.
-- If requirements or validation for Terra are unclear, start at Sol Medium and assess upward rather than pretending the bounded-work conditions are satisfied.
-- If Terra is missing from the picker, report the exact mismatch and resolve it with the user, not a silent older-model substitution.
-- Terra's API None does not permit a Codex None recommendation. Never recommend Luna Ultra. Ultra on another model still needs exact client availability and explicit authorization for delegation.
-- Chinese routing responses use Chinese effort labels and confirmation; English responses use English labels and confirmation. Model names retain their official spelling.
-- Astra mappings are unchanged and applied once. Never map Astra Low/Medium to Terra or modify a base Luna/Terra/Sol route.
+- Several Luna/Terra turns followed by an unknown synchronization/publishing bug must trigger whole-task reassessment, not carry-forward.
+- A screenshot as the first step of an interacting upload/role/persistence workflow does not make the whole task Terra-eligible.
+- A simple-looking screen does not authorize an irreversible external action.
+- Equal Standard credit rates for 6.1/6.2 Sol do not prove identical included allowance, tokens or rework; do not claim either always costs less.
+- A request to publish a repository release must leave the actual installed skill, AGENTS.md, hooks and client settings untouched. Use isolated test homes.
+- Install choices use ChatGPT Plus / ChatGPT Pro, not dollar bands. Old directory/skill IDs are compatibility details, not UI plan names. Do not infer a corporate/education/API-key plan has Pro entitlements.
+- Missing model/effort options produce an availability mismatch, not a silent substitution.
+- None/Minimal are not reviewed Codex picker choices. Ultra availability is not delegation permission; Luna Ultra is invalid.
+- Long input alone is not an Astra signal or a promise the default context fits. Check actual available context and billing without dropping sources or changing settings.
+- Chinese recommendations use Chinese labels/effort/confirmation, except official model names; English recommendations contain no Chinese.
+- Plus mappings apply once, never remap resulting Astra Low or alter a Luna/Terra/Sol base route. A lower effort is not equal quality or a measured saving.
 
-## Checks for actual outputs
+## Validate actual outputs separately
 
-Use a standalone routing-only prompt for the model check. After choosing the recommended model and confirming, assess the real output separately:
-
-- Writing: compare facts, qualifications, audience and voice against the supplied material.
-- Visual work: compare labels/values and uncertainty flags with the images; do not invent obscured details.
-- Computer use: reopen the affected draft/record and compare saved state with the completion report.
-- Code: run focused regression tests and verify there were no coupled changes beyond scope.
-
-Compare Terra with Sol on the same task and effort before claiming savings or equal quality. Passing the updater test suite does not establish these behavioral results.
+Check writing against the source, visual labels/uncertainty against images, saved app records against the completion report, and code with regressions/rendered interaction checks. Compare models at the same effective effort, then evaluate lowering it. Record quality, usage, time to a usable result and rework. Passing updater tests does not prove these outcomes.
