@@ -1,4 +1,4 @@
-# Codex Model Router — GPT-6.2 + GPT-6.1 Sol, value first
+# Codex Model Router: GPT-6.2 + value-aware Plus / Pro 100 / Pro 200 / Pro 500
 
 **English** | [Chinese guide](README.zh-CN.md)
 
@@ -6,39 +6,36 @@
 
 Choose a capable model and reasoning effort before work begins. Select the recommendation yourself, then send `go`. The router does not silently switch models, change speed settings or guarantee fixed token savings.
 
-## v1.4.0: newer models, not newer-at-any-cost
+## v1.5.0: newer models, not newer-at-any-cost
 
 Candidates: **GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol, GPT-6.2 Sol and GPT-6.2 Astra**. GPT-6.1 Sol remains an active value choice, not an obsolete fallback. Luna and Terra keep their verified versions.
 
-Choose by quality, real availability, context, effort and rework. The **ChatGPT Plus** strategy retains a proven 6.1 Sol baseline; the **ChatGPT Pro** strategy considers 6.2 Sol first but retains 6.1 for proven value or preference. These are project policies, not official OpenAI routing algorithms.
+Choose by quality, real availability, context, effort and rework. The **ChatGPT Plus** strategy retains a proven 6.1 Sol baseline; the **ChatGPT Pro 100** favors the proven 6.1 Sol baseline; **Pro 200 / Pro 500** consider 6.2 Sol first but retain 6.1 for value or preference. These are project policies, not official OpenAI routing algorithms.
 
 The official Standard-speed credit rates for Sol 6.1 and 6.2 match. Neither is automatically cheaper per completed task. Official subscription guidance also expressly exempts 6.1 Sol from long-context surcharge. Check your actual allowance and fixed mode; do not convert API prices into included tasks. [Official pricing](https://learn.chatgpt.com/docs/pricing), reviewed November 19, 2026.
 
-## Step 1 — Install for your subscription
+## Step 1 — Paste the repository link and install
 
-Use your **official subscription name**, not a monthly-price band. Choose one strategy; do not infer your plan from model access or a dollar amount.
-
-### ChatGPT Plus
-
-Paste this complete request into Codex:
+Send this to Codex:
 
 ```text
-Use the Skill Installer to install v1.4.0 from alanliuc-a11y/codex-model-router-gpt-6-1, path profiles/20-usd, named model-router-20, for the ChatGPT Plus value-first strategy. Run the installed global-routing script, then scripts/router-update.py enable-hooks with an available Python 3.10+ runtime. Preserve my other AGENTS.md rules and hooks. Explain required hook review without bypassing trust. Ask before installing a runtime and report which steps are verified.
+Install https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1 at v1.5.0. Read INSTALL.md first and ask me to click Plus / Pro 100 / Pro 200 / Pro 500 before installing. Preserve unrelated settings and the current reminder preference.
 ```
 
-### ChatGPT Pro
+Click your subscription once; the chosen skill package remembers the strategy. Do not type a plan name. Native choice controls require a supported host tool; if unavailable, installation pauses and explains why. A README link alone cannot force a client dialog. A plan explicitly supplied with the install request skips the question. Other plans/API-key billing are not supported by this four-option installer.
 
-```text
-Use the Skill Installer to install v1.4.0 from alanliuc-a11y/codex-model-router-gpt-6-1, path ., named model-router, for the ChatGPT Pro strategy. Run the installed global-routing script, then scripts/router-update.py enable-hooks with an available Python 3.10+ runtime. Preserve my other AGENTS.md rules and hooks. Explain required hook review without bypassing trust. Ask before installing a runtime and report which steps are verified.
-```
+| Choice | Package path | Strategy |
+| --- | --- | --- |
+| Plus | profiles/20-usd | Proven 6.1 Sol baseline; existing Astra conservation mapping |
+| Pro 100 | profiles/pro-100 | Proven 6.1 Sol value; direct Astra when genuinely needed, lowest adequate effort |
+| Pro 200 | profiles/pro-200 | 6.2 Sol balance; Astra Medium/High for demanding integration |
+| Pro 500 | profiles/pro-500 | Difficult-work quality first; Astra High for costly integration, XHigh exceptionally |
 
-Business, Enterprise, Edu, Free/Go and API-key setups need their own seat, model-availability and usage checks; do not silently assign them Pro rules or promise all five models. Pro variants also differ in allowance.
-
-The identifiers `model-router-20` and `profiles/20-usd` are historical compatibility paths, **not subscription selection labels**. Keep them so old installers/updaters work. The repository URL likewise keeps its historical `gpt-6-1` suffix; that is not a model-version limit.
+All preserve Luna/Terra eligibility, supported explicit choices and 6.1 Sol value. These are project strategies, not guaranteed official quotas. Speed is never changed. Legacy generic Pro at the repository root remains only for existing same-profile updates; do not infer its Pro tier. [Install details](INSTALL.md).
 
 ### Download manually
 
-Download the [v1.4.0 ZIP](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.4.0.zip). Copy `profiles/20-usd` to `<CODEX_HOME>/skills/model-router-20` for Plus, or the root package files to `<CODEX_HOME>/skills/model-router` for Pro.
+Download the [v1.5.0 ZIP](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.5.0.zip). Use the selected path above; install it under its manifest profile name in `<CODEX_HOME>/skills/`. Keep only one active router.
 
 Keep `SKILL.md`, `GLOBAL-ROUTING.md`, `version.json`, `agents/`, `references/` and `scripts/` together. Back up an existing install outside skill discovery first. Install only one strategy.
 
@@ -99,12 +96,7 @@ Astra needs two genuine complexity signals plus demanding coordination, long dep
 
 ### Subscription strategies
 
-- **ChatGPT Plus:** preserve a proven GPT-6.1 Sol baseline. Use 6.2 Sol for explicit choice, a concrete need or credible same-input/effective-effort evidence of lower total usage/rework. Do not claim 6.1 is always cheaper.
-- **ChatGPT Pro:** 6.2 Sol is a general starting candidate; retain 6.1 for preference, proven value or a better context/billing tradeoff. Extra allowance is not a reason to always use Astra.
-- **Plus conservation mapping, once:** a base Astra Low/Medium route becomes selected value-Sol XHigh, normally GPT-6.1 Sol; 6.2 Sol is used only when justified above. Astra High/XHigh/Max/Ultra becomes GPT-6.2 Astra Low. Do not remap that result or change Luna/Terra/Sol base routes. Reduced effort is not equivalent quality; explicit supported user requirements take precedence.
-- **Pro:** no Plus conservation mapping. Preserve the base route.
-
-The dated [pricing and value policy](references/pricing-policy.md) contains the credit-rate table and billing distinctions. Compare real output quality, effort, context/caching, time to a usable result, usage and repair work before claiming savings.
+Use the four-strategy installation table above. Each chosen package contains its own rules and identity. All Pro strategies retain direct Astra routing when warranted; only Plus uses its existing conservation mapping. Legacy root model-router remains generic Pro, preserved for existing upgrades, and is not the new-install default. Model effort follows task difficulty, not plan rank alone.
 
 ### Availability and context
 
@@ -114,7 +106,7 @@ Codex documents default context of 272,000 tokens for 6.2 Astra and 500,000 for 
 
 ## Updates — only when you ask
 
-Publishing v1.4.0 on GitHub **does not upgrade your local installation**. Keep the old version to test the process. Publication/validation runs use isolated test homes, not the active skill, AGENTS.md, hooks or client settings.
+Publishing v1.5.0 on GitHub **does not upgrade your local installation**. Keep the old version to test the process. Publication/validation runs use isolated test homes, not the active skill, AGENTS.md, hooks or client settings.
 
 On v1.2.1 or later, send `check router update` to check only, or `update router` to authorize a same-strategy upgrade. Neither executes a task waiting for confirmation. A verified newer release can add one fourth routing line:
 
@@ -125,7 +117,7 @@ Checks read cache in the foreground and refresh asynchronously at most once per 
 For an unavailable updater or old install, paste:
 
 ```text
-Update my installed Codex Model Router to v1.4.0 from alanliuc-a11y/codex-model-router-gpt-6-1. Preserve my strategy and existing identifiers: profiles/20-usd/model-router-20 for ChatGPT Plus, root/model-router for ChatGPT Pro. Back up the skill and AGENTS.md/hooks.json outside skill discovery before reinstalling with the Skill Installer, which does not overwrite existing folders. Run global setup and verify version.json/file hashes. Preserve unrelated rules, hooks and whether reminders were enabled. Enable reminders only if previously enabled or I request them. Explain trust review without bypassing it. Keep one active router and restore the original install/config if setup fails.
+Update my installed Codex Model Router to v1.5.0 from alanliuc-a11y/codex-model-router-gpt-6-1. Preserve my strategy and existing identifiers: profiles/20-usd/model-router-20 for ChatGPT Plus, the existing manifest identity for Pro; never infer a numbered Pro tier from legacy model-router. Back up the skill and AGENTS.md/hooks.json outside skill discovery before reinstalling with the Skill Installer, which does not overwrite existing folders. Run global setup and verify version.json/file hashes. Preserve unrelated rules, hooks and whether reminders were enabled. Enable reminders only if previously enabled or I request them. Explain trust review without bypassing it. Keep one active router and restore the original install/config if setup fails.
 ```
 
 Updates stage and verify the selected package, retain complete backups and roll back caught replacement failures. Hashes detect damage, not a compromised repository. Crashes or failed restoration may require manual recovery. Customized package files/Git checkouts require manual upgrades. [Testing and recovery](docs/update-testing.md)

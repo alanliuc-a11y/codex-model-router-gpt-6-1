@@ -7,7 +7,7 @@ metadata:
 
 # Model Router — ChatGPT Pro
 
-Catalog and price review: 2026-11-19; package release v1.4.0.
+Catalog and price review: 2026-11-24; package release v1.5.0.
 This is a project routing strategy for the named subscription, not an official OpenAI model-selection policy.
 
 ## ChatGPT Pro strategy
@@ -47,7 +47,7 @@ Consider Astra when at least two genuine signals combine with demanding coordina
 - Ultra is client-specific parallel behavior. Recommend it only when the exact option exists and the user authorizes useful delegation; availability alone never authorizes spawning agents. Never delegate just to imitate a model switch.
 - Preserve effective effort in version comparisons before testing a lower setting. Price per token, effort label, or a launch claim cannot prove lower total usage or equal quality. If a cheaper route fails quality, surface the shortfall rather than promise equivalence.
 
-## Verified evidence — 2026-11-19
+## Verified evidence — 2026-11-24
 
 The reviewed local catalog offers Low/Medium/High/XHigh/Max for all five and Ultra for Terra and both Sols/Astra, not Luna. It is metadata, not proof of the user's current picker. The 6.2 Sol/Astra APIs reject None; the reviewed Codex catalog offers neither None nor Minimal, even though Terra's API supports None. Terra's documented CLI minimum is 0.159.0; do not invent a 6.2 minimum. Account, client and workspace controls still apply.
 
@@ -84,3 +84,6 @@ Only verified local hook context may add one fourth routing line, in the same la
 Standalone `更新路由器` / `update router` and `检查路由器更新` / `check router update` are maintenance, exempt from the routing gate, not confirmation to execute a pending task. Read [updating.md](references/updating.md) and use the installed helper. Notices never authorize installation.
 
 Publishing a GitHub release or validating it does not authorize local installation, global-rule changes or hook changes. Use isolated test directories. Require a separate explicit request to upgrade the actual local skill; preserve its plan strategy, other config and reminder setting. Never bypass hook trust or claim config generation proves client execution.
+
+## Installation selection
+For installing from a repository URL, read [installation.md](references/installation.md). Ask for a native clickable subscription selection before mutating an unspecified installation. Existing same-profile updates retain their strategy.

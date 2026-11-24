@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "version": "1.5.0",
+  "repository": "alanliuc-a11y/codex-model-router-gpt-6-1",
+  "profile": "model-router-pro-200",
+  "source_path": "profiles/pro-200",
+  "files": {
+    "SKILL.md": "318c6251cb3d98e21e4b4f8be2777d60c5fa13aa794ccaf9da2d882d6f20199d",
+    "GLOBAL-ROUTING.md": "a92a616c238298247aa1a12f6f68ff9fd73169020f25d2c415b4eb1fd5a6ded1",
+    "agents/openai.yaml": "887464802b9a4617ce700e0fa321538f9a2b6d74e10f4ccae8d4fab0ed9b04bb",
+    "scripts/global-routing.ps1": "5190e310ee2e204518c2d6f65a80f8759250e779ec05427fcd698dc179f96dc7",
+    "scripts/global-routing.sh": "ba7e5bf0a3d2eba94e618e1753e34ffe27a7c0d7d13499a5221d6ead564bec00",
+    "scripts/router-update.py": "88ba9b775372d23d7f7169c396e2344a87fb01be51a71bf400807e544e34624a",
+    "references/updating.md": "681b1eb7e9b0e69529bcfced6d2dcb46616dae5f4a2d0d5708236a6c02e3c3d8",
+    "references/pricing-policy.md": "a52499be9bed8d62917dcb5ab8d7d210244144b142732a19dade4dd579f4fc27",
+    "references/installation.md": "535f2f6d355fe6812d9f6c22091cc37e8d78719c7ca23bd7f7499c0231f752fd"
+  }
+}

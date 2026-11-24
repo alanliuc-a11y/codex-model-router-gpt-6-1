@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.5.0 — 2026-11-24
+
+Native four-choice installation, Plus / Pro 100 / Pro 200 / Pro 500 strategies, new tier-preserving packages, official model recheck (latest verified GPT-6.2). Legacy updater compatibility retained. See docs/releases/v1.5.0.md.
+
 Current package: v1.4.0; cost-aware candidates: GPT-6 Luna, GPT-6.1 Terra, GPT-6.1 Sol, GPT-6.2 Sol and GPT-6.2 Astra. Older entries below are historical.
 
 ## v1.4.0 — 2026-11-19

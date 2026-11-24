@@ -1,4 +1,4 @@
-# Codex 模型路由器：支持 GPT-6.2，保留 GPT-6.1 Sol 的性价比选择
+# Codex 模型路由器：GPT-6.2 与 Plus／Pro 100／Pro 200／Pro 500 四档策略
 
 [英文说明](README.md) | **中文说明**
 
@@ -6,39 +6,36 @@
 
 任务开始前，先推荐够用的模型和推理强度。你自己选好组合，再输入「执行」继续。不会暗中换模型，不改速度，也不保证固定的令牌节省比例。
 
-## 1.4.0：支持新版，但不为追新牺牲性价比
+## 1.5.0：支持新版，但不为追新牺牲性价比
 
 候选模型为 **GPT-6 Luna、GPT-6.1 Terra、GPT-6.1 Sol、GPT-6.2 Sol 和 GPT-6.2 Astra**。6.1 Sol 仍是正常的性价比候选，不再因为新版发布就被降为旧版兜底。
 
-按质量、可用模型、上下文、推理消耗及返工综合选择。**ChatGPT Plus** 策略保留已经验证好用的 6.1 Sol 基线；**ChatGPT Pro** 可以先评估 6.2 Sol，但仍保留 6.1 的经验优势。这是项目策略，不是官方路由算法。
+按质量、可用模型、上下文、推理消耗及返工综合选择。**ChatGPT Plus** 策略保留已经验证好用的 6.1 Sol 基线；**Pro 100** 同样偏重性价比；**Pro 200 / Pro 500** 可以先评估 6.2 Sol，但仍保留 6.1 的经验优势。这是项目策略，不是官方路由算法。
 
 官方基准积分单价中，6.1 Sol 与 6.2 Sol 相同，不能直接说谁完成整个任务一定更便宜。官方还明确说明：6.1 Sol 的订阅用量没有长上下文附加费。订阅额度、额外积分和接口账单要分开判断。[官方计费资料](https://learn.chatgpt.com/docs/pricing)，核对日期为 2026 年 11 月 19 日。
 
-## 第一步：按官方订阅名称安装
+## 第一步：把仓库地址发给 Codex 安装
 
-根据自己的实际订阅选择，不再用月费金额分档，也不从模型列表猜订阅。只安装一个策略。
-
-### ChatGPT Plus
-
-把下面整段话发送给 Codex：
+复制下面整段话发给 Codex：
 
 ```text
-请使用技能安装器从 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.4.0，路径使用 profiles/20-usd，名称使用 model-router-20，采用 ChatGPT Plus 性价比优先策略。运行已安装技能的全局路由脚本，再用本机已有的运行环境运行 scripts/router-update.py enable-hooks。保留其他 AGENTS.md 规则及检查脚本，告诉我如何审核并信任新配置，不要绕过审核。缺少运行环境时先问我，并分别说明哪些步骤已验证。
+请安装 https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1 的 v1.5.0。先读 INSTALL.md，安装前让我点击选择 Plus / Pro 100 / Pro 200 / Pro 500，再安装对应策略。保留其他配置和现有更新提醒设置。
 ```
 
-### ChatGPT Pro
+点击一次自己的订阅，安装后就记住对应策略，不用手打订阅名称。按钮需要客户端提供原生选择工具；不支持时暂停并说明原因。仓库说明不能强制所有客户端弹出按钮。安装指令已明确订阅时不再重复问。其他订阅或接口密钥计费暂不在这四项安装范围内。
 
-```text
-请使用技能安装器从 alanliuc-a11y/codex-model-router-gpt-6-1 安装 v1.4.0，路径使用 .，名称使用 model-router，采用 ChatGPT Pro 策略。运行已安装技能的全局路由脚本，再用本机已有的运行环境运行 scripts/router-update.py enable-hooks。保留其他 AGENTS.md 规则及检查脚本，告诉我如何审核并信任新配置，不要绕过审核。缺少运行环境时先问我，并分别说明哪些步骤已验证。
-```
+| 选择 | 安装路径 | 策略 |
+| --- | --- | --- |
+| Plus | profiles/20-usd | 保留 6.1 Sol 性价比基线及现有节省规则 |
+| Pro 100 | profiles/pro-100 | 偏重 6.1 Sol 性价比，困难任务可直接选 Astra 的够用强度 |
+| Pro 200 | profiles/pro-200 | 6.2 Sol 均衡策略，困难整合任务评估 Astra 中或高 |
+| Pro 500 | profiles/pro-500 | 困难任务优先减少返工，昂贵整合选 Astra 高，极高仅用于特殊深度 |
 
-其他订阅、工作区席位或接口密钥使用方式，应先核对真实的模型权限及用量限制，不能一律按 Pro 处理，也不能保证五个模型都可用。Pro 内部的额度也并不完全相同。
-
-`model-router-20` 与 `profiles/20-usd` 仅保留为历史兼容标识，**不是给用户选择的订阅分档名称**。仓库网址里的 `gpt-6-1` 同样为兼容旧更新器保留，不限制支持的模型版本。
+四档都保留简单任务和有界任务的判断门槛，保留 6.1 Sol 及用户明确选择，不改速度。策略为项目设计，不保证固定额度或节省比例。根目录旧通用 Pro 只为老用户同策略升级保留，不能从它推断具体 Pro 档位。见[安装流程](INSTALL.md)。
 
 ### 手动下载安装
 
-下载 [1.4.0 压缩包](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.4.0.zip)。Plus 使用 `profiles/20-usd`，安装到 `<CODEX_HOME>/skills/model-router-20`；Pro 使用根目录技能文件，安装到 `<CODEX_HOME>/skills/model-router`。
+下载 [1.5.0 压缩包](https://github.com/alanliuc-a11y/codex-model-router-gpt-6-1/archive/refs/tags/v1.5.0.zip)。按上表选择路径，安装到 `<CODEX_HOME>/skills/` 下清单指定名称的文件夹，只保留一个活动路由器。
 
 `SKILL.md`、`GLOBAL-ROUTING.md`、`version.json`、`agents/`、`references/` 和 `scripts/` 必须放在一起。已有安装先备份到技能目录外，只保留一个策略。
 
@@ -125,7 +122,7 @@ Astra 需要至少两个真实复杂信号，同时存在困难协调、长链�
 旧版或更新器不可用时，可发送：
 
 ```text
-请把本机 Codex 模型路由器更新到 alanliuc-a11y/codex-model-router-gpt-6-1 的 v1.4.0。保留策略和已有标识：Plus 使用 profiles/20-usd 与 model-router-20，Pro 使用根目录与 model-router。先把旧技能及 AGENTS.md、hooks.json 备份到技能目录外，再使用不会覆盖旧目录的技能安装器重装。运行全局配置并核对版本清单和文件校验值。保留其他规则、检查脚本及提醒原来的开关状态；原本开启或我另外要求时才启用提醒。说明信任审核，不绕过审核，只保留一个生效策略。失败时恢复原安装和配置。
+请把本机 Codex 模型路由器更新到 alanliuc-a11y/codex-model-router-gpt-6-1 的 v1.5.0。保留策略和已有标识：Plus 使用 profiles/20-usd 与 model-router-20，旧通用 Pro 使用根目录与 model-router。先把旧技能及 AGENTS.md、hooks.json 备份到技能目录外，再使用不会覆盖旧目录的技能安装器重装。运行全局配置并核对版本清单和文件校验值。保留其他规则、检查脚本及提醒原来的开关状态；原本开启或我另外要求时才启用提醒。说明信任审核，不绕过审核，只保留一个生效策略。失败时恢复原安装和配置。
 ```
 
 更新会校验下载、保留完整备份并恢复可捕获的安装失败。文件校验不是独立安全签名；突然退出或恢复时无法写入，可能仍需人工处理。自定义过的技能文件或 Git 克隆目录应手动升级。[测试与恢复](docs/update-testing.zh-CN.md)

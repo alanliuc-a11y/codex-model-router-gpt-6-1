@@ -29,10 +29,10 @@ DAY = 86400
 MAX_DOWNLOAD = 32 * 1024 * 1024
 START = "<!-- model-router:global-start -->"
 END = "<!-- model-router:global-end -->"
-PROFILES = {"model-router": ".", "model-router-20": "profiles/20-usd"}
+PROFILES = {'model-router': '.', 'model-router-20': 'profiles/20-usd', 'model-router-pro-100': 'profiles/pro-100', 'model-router-pro-200': 'profiles/pro-200', 'model-router-pro-500': 'profiles/pro-500'}
 REQUIRED = {"SKILL.md", "GLOBAL-ROUTING.md", "agents/openai.yaml",
             "scripts/global-routing.ps1", "scripts/global-routing.sh",
-            "scripts/router-update.py", "references/updating.md", "references/pricing-policy.md"}
+            "scripts/router-update.py", "references/updating.md", "references/pricing-policy.md", "references/installation.md"}
 
 
 class UpdateError(Exception):

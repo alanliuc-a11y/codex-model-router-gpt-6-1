@@ -32,7 +32,7 @@ class Updates(unittest.TestCase):
         router.write_json(self.home / "hooks.json", self.original_hook)
 
     def package(self, root, profile, value):
-        source = ROOT if profile == "model-router" else ROOT / "profiles/20-usd"
+        source = ROOT / router.PROFILES[profile]
         files = {}
         for relative in sorted(router.REQUIRED):
             payload = (source / relative).read_bytes()
@@ -54,7 +54,7 @@ class Updates(unittest.TestCase):
         profile = profile or self.profile
         directory = Path(self.temp.name) / ("archive-" + profile + "-" + value)
         self.package(directory, profile, value)
-        prefix = "repo-tag/" + ("profiles/20-usd/" if profile == "model-router-20" else "")
+        prefix = "repo-tag/" + (router.PROFILES[profile] + "/" if router.PROFILES[profile] != "." else "")
         stream = io.BytesIO()
         with zipfile.ZipFile(stream, "w") as archive:
             for path in directory.rglob("*"):
@@ -88,7 +88,7 @@ class Updates(unittest.TestCase):
         self.assertFalse(router.available(self.cache("1.1.0"), "1.2.0"))
 
     def test_repository_packages_and_profile_copies_match(self):
-        for folder in (ROOT, ROOT / "profiles/20-usd"):
+        for folder in (ROOT / path for path in router.PROFILES.values()):
             router.verify_package(folder, router.load_package(folder))
         for relative in ("scripts/router-update.py", "references/updating.md", "references/pricing-policy.md"):
             self.assertEqual((ROOT / relative).read_bytes().replace(b"\r\n", b"\n"),
@@ -204,6 +204,23 @@ class Updates(unittest.TestCase):
         self.assertTrue(self.home.joinpath("AGENTS.md").read_bytes().startswith(original_agents))
         self.assertEqual(router.read_json(self.home / "hooks.json")["hooks"]["Stop"], self.original_hook["hooks"]["Stop"])
 
+    def test_all_subscription_profiles_update_without_changing_identity(self):
+        for profile, source in router.PROFILES.items():
+            with self.subTest(profile=profile):
+                target = Path(self.temp.name) / ("stage-" + profile)
+                manifest = router.stage_archive(self.archive(profile=profile), target, profile, "1.3.0")
+                router.verify_package(target, manifest)
+                self.assertEqual(manifest["source_path"], source)
+                self.assertIn("references/installation.md", manifest["files"])
+                installed = self.home / "skills" / profile
+                if not installed.exists():
+                    installed.mkdir(parents=True)
+                    self.package(installed, profile, "1.2.0")
+                with patch.object(router, "latest_release", return_value=self.release()), patch.object(router, "fetch", return_value=self.archive(profile=profile)):
+                    result = router.update(installed, self.home, confirm=True)
+                self.assertEqual(result["profile"], profile)
+                self.assertEqual(router.load_package(installed)["profile"], profile)
+
     def test_higher_allowance_profile_stages_independently(self):
         target = Path(self.temp.name) / "higher-staged"
         manifest = router.stage_archive(self.archive(profile="model-router"), target, "model-router", "1.3.0")
@@ -214,7 +231,7 @@ class Updates(unittest.TestCase):
         payload = self.archive()
         target = Path(self.temp.name) / "old-validator-new-resource"
         # v1.3's validator required the old seven files but accepted listed extras.
-        with patch.object(router, "REQUIRED", router.REQUIRED - {"references/pricing-policy.md"}):
+        with patch.object(router, "REQUIRED", router.REQUIRED - {"references/pricing-policy.md", "references/installation.md"}):
             manifest = router.stage_archive(payload, target, self.profile, "1.3.0")
         router.verify_package(target, manifest)
         self.assertEqual((target / "references/pricing-policy.md").read_bytes(),

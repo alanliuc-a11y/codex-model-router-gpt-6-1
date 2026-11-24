@@ -1,0 +1,6 @@
+interface:
+  display_name: "ChatGPT Pro 100 模型路由器"
+  short_description: "结合任务难度与总用量推荐模型，保留已验证的性价比选择，不自动切换"
+  default_prompt: "Use $model-router-pro-100 to recommend the most efficient model and reasoning effort for this task without executing it or changing speed settings."
+policy:
+  allow_implicit_invocation: true

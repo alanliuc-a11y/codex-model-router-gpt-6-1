@@ -36,3 +36,7 @@ These are manual model-behavior cases, not automated routing results or quality 
 ## Validate actual outputs separately
 
 Check writing against the source, visual labels/uncertainty against images, saved app records against the completion report, and code with regressions/rendered interaction checks. Compare models at the same effective effort, then evaluate lowering it. Record quality, usage, time to a usable result and rework. Passing updater tests does not prove these outcomes.
+
+## Four-tier installation acceptance
+
+On a host supporting four native choices, submit each tier in a fresh isolated home and verify manifest identity, matching global block, only one active router, and no second question on later tasks. Without the choice tool, expect a paused install and no config write. A preselected but unsubmitted option or timeout must never install. Explicitly supplied tiers skip the question; unsupported plans stop. Same-profile update preserves each of all five compatibility identities. Test legacy generic Pro without inferring a numbered tier. Compare the same demanding request: Plus mapping vs direct Astra for Pro 100; balanced Medium/High for Pro 200; High only for costly integration on Pro 500, never routine-task escalation. These are manual model-output cases, not covered by updater tests.
